@@ -68,24 +68,26 @@ function Properties() {
   });
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="min-h-screen bg-gray px-6 py-10">
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
+      <div className="mx-auto mb-8 max-w-6xl">
+        <h1 className="text-4xl font-bold text-gray-900">
           Rental Properties
         </h1>
 
-        <p className="mt-2 text-gray-500">
+        <p className="mt-2 text-lg text-gray-500">
           Find your next home.
         </p>
-      </div>
-
-      <SearchBar
+        <SearchBar
         search={search}
         setSearch={setSearch}
         propertyType={propertyType}
         setPropertyType={setPropertyType}
       />
+        
+      </div>
+
+      
 
       {loading && (
         <div className="py-10 text-center text-gray-500">
@@ -107,7 +109,7 @@ function Properties() {
         </div>
       )}
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3">
         {filteredProperties.map((property) => (
           <PropertyCard
             key={property.id}
