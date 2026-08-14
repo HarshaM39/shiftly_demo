@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import PropertyCard from "../components/PropertyCard";
 import SearchBar from "../components/SearchBar";
+import WelcomeBanner from "../components/WelcomeBanner";
 
 import {
   getProperties,
@@ -79,6 +80,7 @@ function Properties() {
           Find your next home.
         </p>
       </div>
+      <WelcomeBanner />
 
       <SearchBar
         search={search}
