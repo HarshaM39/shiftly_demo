@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Properties from "./pages/Properties";
 import AddProperty from "./pages/AddProperty";
+import Login from "./pages/login";
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/" element={<Properties />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/add" element={<AddProperty />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       </main>
     </div>
