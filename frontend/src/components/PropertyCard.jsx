@@ -4,10 +4,10 @@ function PropertyCard({ property, onDelete }) {
   const navigate = useNavigate();
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white shadow-md transition hover:shadow-lg">
+    <div className="h-full overflow-hidden rounded-xl bg-white hover:bg-gray-100 shadow-md transition hover:shadow-2xl flex flex-col">
       <div className="h-40 bg-gradient-to-r from-blue-500 to-indigo-600" />
 
-      <div className="p-5">
+      <div className=" flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-3">
           <h2 className="text-xl font-bold text-gray-800">
             {property.title}
@@ -23,14 +23,15 @@ function PropertyCard({ property, onDelete }) {
             {property.available ? "Available" : "Occupied"}
           </span>
         </div>
-
-        <p className="mt-2 text-gray-500">
+        <div className="">
+          <p className="mt-2 text-gray-500">
           {property.location}
         </p>
 
         <p className="mt-3 line-clamp-2 text-sm text-gray-600">
           {property.description}
         </p>
+        </div>
 
         <div className="mt-4 flex gap-4 text-sm text-gray-600">
           <span>{property.bedrooms} Beds</span>
@@ -38,7 +39,8 @@ function PropertyCard({ property, onDelete }) {
           <span>{property.propertyType}</span>
         </div>
 
-        <div className="mt-5 flex items-center justify-between">
+       <div className="mt-auto pt-5">
+        <div className="flex items-center justify-between">
           <p className="text-xl font-bold text-blue-600">
             ₹{property.rent.toLocaleString()}
             <span className="text-sm font-normal text-gray-500">
@@ -48,15 +50,16 @@ function PropertyCard({ property, onDelete }) {
 
           <button
             onClick={() => navigate(`/properties/${property.id}`)}
-            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 cursor-pointer"
           >
             View
           </button>
         </div>
+        </div>
 
         <button
           onClick={() => onDelete(property.id)}
-          className="mt-3 w-full rounded-md border border-red-300 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+          className="mt-3 w-full rounded-md border border-red-300 px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer"
         >
           Delete
         </button>
