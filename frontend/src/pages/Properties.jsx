@@ -68,53 +68,123 @@ function Properties() {
   });
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="min-h-screen bg-slate-50">
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
-          Rental Properties
-        </h1>
+      {/* Hero */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500">
 
-        <p className="mt-2 text-gray-500">
-          Find your next home.
-        </p>
-      </div>
+        {/* Decorative circles */}
+        <div className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10" />
+        <div className="absolute -bottom-32 left-20 h-80 w-80 rounded-full bg-white/10" />
 
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        propertyType={propertyType}
-        setPropertyType={setPropertyType}
-      />
+        <div className="relative mx-auto max-w-7xl px-6 py-20">
 
-      {loading && (
-        <div className="py-10 text-center text-gray-500">
-          Loading properties...
-        </div>
-      )}
-
-      {error && (
-        <div className="rounded-lg bg-red-50 p-4 text-red-600">
-          {error}
-        </div>
-      )}
-
-      {!loading && !error && filteredProperties.length === 0 && (
-        <div className="rounded-lg bg-white p-10 text-center shadow">
-          <p className="text-gray-500">
-            No properties found.
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-blue-100">
+            Find your perfect home
           </p>
-        </div>
-      )}
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredProperties.map((property) => (
-          <PropertyCard
-            key={property.id}
-            property={property}
-            onDelete={handleDelete}
-          />
-        ))}
+          <h1 className="max-w-3xl text-4xl font-extrabold tracking-tight text-white md:text-5xl">
+            Find a place you'll
+            <span className="block text-cyan-200">
+              love to call home.
+            </span>
+          </h1>
+
+          <p className="mt-5 max-w-2xl text-lg leading-8 text-blue-100">
+            Explore comfortable homes and find a property
+            that fits your lifestyle and budget.
+          </p>
+
+        </div>
+      </section>
+
+      {/* Content */}
+      <div className="mx-auto max-w-7xl px-6 py-10">
+
+        {/* Search */}
+        <SearchBar
+          search={search}
+          setSearch={setSearch}
+          propertyType={propertyType}
+          setPropertyType={setPropertyType}
+        />
+
+        {/* Results header */}
+        <div className="mb-6 flex items-center justify-between">
+
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900">
+              Available Properties
+            </h2>
+
+            <p className="mt-1 text-sm text-slate-500">
+              Showing {filteredProperties.length}{" "}
+              {filteredProperties.length === 1
+                ? "property"
+                : "properties"}
+            </p>
+          </div>
+
+          <div className="hidden rounded-full bg-indigo-50 px-4 py-2 text-sm font-semibold text-indigo-600 sm:block">
+            🏠 {filteredProperties.length} Listings
+          </div>
+
+        </div>
+
+        {/* Loading */}
+        {loading && (
+          <div className="rounded-2xl bg-white py-16 text-center shadow-sm">
+            <div className="text-4xl">🏠</div>
+
+            <p className="mt-4 font-medium text-slate-600">
+              Loading properties...
+            </p>
+          </div>
+        )}
+
+        {/* Error */}
+        {error && (
+          <div className="rounded-xl border border-red-200 bg-red-50 p-5 text-red-600">
+            {error}
+          </div>
+        )}
+
+        {/* Empty */}
+        {!loading &&
+          !error &&
+          filteredProperties.length === 0 && (
+            <div className="rounded-2xl bg-white p-16 text-center shadow-sm">
+
+              <div className="text-5xl">
+                🔍
+              </div>
+
+              <h3 className="mt-4 text-xl font-bold text-slate-800">
+                No properties found
+              </h3>
+
+              <p className="mt-2 text-slate-500">
+                Try changing your search or property type.
+              </p>
+
+            </div>
+          )}
+
+        {/* Property cards */}
+        {!loading && !error && filteredProperties.length > 0 && (
+          <div className="grid gap-7 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+
+            {filteredProperties.map((property) => (
+              <PropertyCard
+                key={property.id}
+                property={property}
+                onDelete={handleDelete}
+              />
+            ))}
+
+          </div>
+        )}
+
       </div>
     </main>
   );
