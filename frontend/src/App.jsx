@@ -1,3 +1,4 @@
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
@@ -6,7 +7,7 @@ import AddProperty from "./pages/AddProperty";
 
 function App() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="app">
       <Navbar />
 
       <Routes>

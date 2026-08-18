@@ -1,121 +1,432 @@
-import { useEffect, useState } from "react";
-
-import PropertyCard from "../components/PropertyCard";
-import SearchBar from "../components/SearchBar";
-
-import {
-  getProperties,
-  deleteProperty
-} from "../services/propertyService";
+import { useState } from "react";
 
 function Properties() {
-  const [properties, setProperties] = useState([]);
   const [search, setSearch] = useState("");
   const [propertyType, setPropertyType] = useState("");
 
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const locations = [
+    {
+      city: "Hyderabad",
+      state: "Telangana",
+      icon: "🏛️",
+      className: "location-blue",
+    },
+    {
+      city: "Bengaluru",
+      state: "Karnataka",
+      icon: "🕌",
+      className: "location-green",
+    },
+    {
+      city: "Chennai",
+      state: "Tamil Nadu",
+      icon: "🏢",
+      className: "location-orange",
+    },
+    {
+      city: "Mumbai",
+      state: "Maharashtra",
+      icon: "🌆",
+      className: "location-purple",
+    },
+    {
+      city: "Delhi",
+      state: "Delhi NCR",
+      icon: "🪷",
+      className: "location-pink",
+    },
+    {
+      city: "Pune",
+      state: "Maharashtra",
+      icon: "🏛️",
+      className: "location-lavender",
+    },
+    {
+      city: "Kolkata",
+      state: "West Bengal",
+      icon: "🌉",
+      className: "location-cyan",
+    },
+    {
+      city: "Vijayawada",
+      state: "Andhra Pradesh",
+      icon: "🛕",
+      className: "location-lightgreen",
+    },
+  ];
 
-  const loadProperties = async () => {
-    try {
-      setLoading(true);
-      setError("");
+  const selectLocation = (city) => {
+    setSearch(city);
 
-      const result = await getProperties();
-
-      setProperties(result.data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
+    window.scrollTo({
+      top: 350,
+      behavior: "smooth",
+    });
   };
 
-  useEffect(() => {
-    loadProperties();
-  }, []);
-
-  const handleDelete = async (id) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this property?"
-    );
-
-    if (!confirmed) {
-      return;
-    }
-
-    try {
-      await deleteProperty(id);
-
-      setProperties((current) =>
-        current.filter((property) => property.id !== id)
-      );
-    } catch (error) {
-      alert(error.message);
-    }
+  const handleSearch = () => {
+    window.scrollTo({
+      top: 350,
+      behavior: "smooth",
+    });
   };
-
-  const filteredProperties = properties.filter((property) => {
-    const matchesLocation = property.location
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-    const matchesType =
-      propertyType === "" ||
-      property.propertyType === propertyType;
-
-    return matchesLocation && matchesType;
-  });
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="properties-page">
 
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
-          Rental Properties
-        </h1>
+      {/* ================= HERO ================= */}
 
-        <p className="mt-2 text-gray-500">
-          Find your next home.
-        </p>
-      </div>
+      <section className="rent-hero">
 
-      <SearchBar
-        search={search}
-        setSearch={setSearch}
-        propertyType={propertyType}
-        setPropertyType={setPropertyType}
-      />
+        <div className="hero-content">
 
-      {loading && (
-        <div className="py-10 text-center text-gray-500">
-          Loading properties...
-        </div>
-      )}
+          <div className="eyebrow">
+            RENT • SEARCH • LIVE
+          </div>
 
-      {error && (
-        <div className="rounded-lg bg-red-50 p-4 text-red-600">
-          {error}
-        </div>
-      )}
+          <h1>
+            Find a better place
+            <br />
+            to call <span>home.</span>
+          </h1>
 
-      {!loading && !error && filteredProperties.length === 0 && (
-        <div className="rounded-lg bg-white p-10 text-center shadow">
-          <p className="text-gray-500">
-            No properties found.
+          <p>
+            Discover rental homes that match your
+            lifestyle, budget and preferred location.
           </p>
-        </div>
-      )}
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filteredProperties.map((property) => (
-          <PropertyCard
-            key={property.id}
-            property={property}
-            onDelete={handleDelete}
-          />
-        ))}
-      </div>
+          {/* SEARCH BAR */}
+
+          <div className="property-search">
+
+            <div className="search-field">
+
+              <span>📍</span>
+
+              <input
+                type="text"
+                placeholder="Search by location..."
+                value={search}
+                onChange={(e) =>
+                  setSearch(e.target.value)
+                }
+              />
+
+            </div>
+
+            <select
+              value={propertyType}
+              onChange={(e) =>
+                setPropertyType(e.target.value)
+              }
+            >
+              <option value="">All Types</option>
+              <option value="Apartment">
+                Apartment
+              </option>
+              <option value="House">
+                House
+              </option>
+              <option value="Villa">
+                Villa
+              </option>
+              <option value="PG">
+                PG
+              </option>
+            </select>
+
+            <button onClick={handleSearch}>
+              Search
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ================= LOCATIONS ================= */}
+
+      <section
+        className="locations-section"
+        id="locations"
+      >
+
+        <div className="section-title center-title">
+
+          <span>
+            EXPLORE LOCATIONS
+          </span>
+
+          <h2>
+            Find a home in your city
+          </h2>
+
+          <p>
+            Explore rental properties in popular
+            cities across India.
+          </p>
+
+        </div>
+
+        <div className="locations-grid">
+
+          {locations.map((location) => (
+
+            <div
+              key={location.city}
+              className={`location-card ${location.className}`}
+              onClick={() =>
+                selectLocation(location.city)
+              }
+            >
+
+              <div className="location-icon">
+                {location.icon}
+              </div>
+
+              <h3>
+                {location.city}
+              </h3>
+
+              <p>
+                {location.state}
+              </p>
+
+              <span className="location-arrow">
+                →
+              </span>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+
+      {/* ================= WHY CHOOSE US ================= */}
+
+      <section
+        className="why-section"
+        id="about"
+      >
+
+        <div className="section-title center-title">
+
+          <span>
+            WHY CHOOSE US
+          </span>
+
+          <h2>
+            The smarter way to rent
+          </h2>
+
+          <p>
+            Everything you need to find your next home.
+          </p>
+
+        </div>
+
+        <div className="features-grid">
+
+          <div className="feature-card">
+
+            <div className="feature-icon">
+              🔎
+            </div>
+
+            <h3>
+              Easy Search
+            </h3>
+
+            <p>
+              Find homes quickly using location,
+              property type and your preferences.
+            </p>
+
+          </div>
+
+          <div className="feature-card">
+
+            <div className="feature-icon">
+              🏠
+            </div>
+
+            <h3>
+              Great Homes
+            </h3>
+
+            <p>
+              Explore a wide range of rental homes
+              suitable for different budgets.
+            </p>
+
+          </div>
+
+          <div className="feature-card">
+
+            <div className="feature-icon">
+              ⚡
+            </div>
+
+            <h3>
+              Simple & Fast
+            </h3>
+
+            <p>
+              Find your next home with a clean,
+              simple and convenient experience.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ================= CTA ================= */}
+
+      <section className="cta-section">
+
+        <div>
+
+          <span>
+            READY TO MOVE?
+          </span>
+
+          <h2>
+            Your next home is waiting.
+          </h2>
+
+          <p>
+            Start exploring rental homes today.
+          </p>
+
+        </div>
+
+        <button
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            })
+          }
+        >
+          Explore Locations →
+        </button>
+
+      </section>
+
+      {/* ================= FOOTER ================= */}
+
+      <footer
+        className="footer"
+        id="contact"
+      >
+
+        <div className="footer-container">
+
+          <div>
+
+            <div className="footer-logo">
+
+              <div className="logo-icon">
+                R
+              </div>
+
+              <div>
+
+                <h3>
+                  RentEase
+                </h3>
+
+                <span>
+                  Find a place to belong
+                </span>
+
+              </div>
+
+            </div>
+
+            <p>
+              Making the search for your next
+              rental home simple, convenient
+              and stress-free.
+            </p>
+
+          </div>
+
+          <div>
+
+            <h4>
+              Explore
+            </h4>
+
+            <a href="/">
+              Home
+            </a>
+
+            <a href="#locations">
+              Locations
+            </a>
+
+            <a href="#about">
+              About Us
+            </a>
+
+          </div>
+
+          <div>
+
+            <h4>
+              Cities
+            </h4>
+
+            <a href="#locations">
+              Hyderabad
+            </a>
+
+            <a href="#locations">
+              Bengaluru
+            </a>
+
+            <a href="#locations">
+              Mumbai
+            </a>
+
+          </div>
+
+          <div>
+
+            <h4>
+              Contact
+            </h4>
+
+            <p>
+              📧 hello@rentease.com
+            </p>
+
+            <p>
+              📞 +91 98765 43210
+            </p>
+
+            <p>
+              📍 Hyderabad, India
+            </p>
+
+          </div>
+
+        </div>
+
+        <div className="footer-bottom">
+
+          © 2026 RentEase. All rights reserved.
+
+        </div>
+
+      </footer>
+
     </main>
   );
 }
