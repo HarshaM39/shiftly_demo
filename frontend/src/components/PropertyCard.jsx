@@ -3,6 +3,16 @@ import { useNavigate } from "react-router-dom";
 function PropertyCard({ property, onDelete }) {
   const navigate = useNavigate();
 
+  const handleView = () => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+      navigate(`/properties/${property.id}`);
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
     <div className="overflow-hidden rounded-xl bg-white shadow-md transition hover:shadow-lg">
       <div className="h-40 bg-gradient-to-r from-blue-500 to-indigo-600" />
@@ -47,7 +57,7 @@ function PropertyCard({ property, onDelete }) {
           </p>
 
           <button
-            onClick={() => navigate(`/properties/${property.id}`)}
+            onClick={handleView}
             className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
           >
             View
