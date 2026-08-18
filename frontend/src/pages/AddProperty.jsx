@@ -46,139 +46,214 @@ function AddProperty() {
   };
 
   return (
-    <main className="mx-auto max-w-2xl px-6 py-10">
+    <main className="mx-auto max-w-3xl px-6 py-12">
 
-      <h1 className="mb-8 text-3xl font-bold">
-        Add Property
-      </h1>
+      {/* Page Header */}
+      <div className="mb-8">
+        <p className="mb-2 text-sm font-semibold uppercase tracking-wider text-blue-600">
+          Property Management
+        </p>
 
+        <h1 className="text-4xl font-bold tracking-tight text-gray-900">
+          Add Property
+        </h1>
+
+        <p className="mt-3 text-gray-500">
+          Add a new rental property to your listings.
+        </p>
+      </div>
+
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
-        className="space-y-5 rounded-xl bg-white p-6 shadow"
+        className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-200 sm:p-8"
       >
 
+        {/* Error */}
         {error && (
-          <div className="rounded-md bg-red-50 p-3 text-red-600">
-            {error}
+          <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-red-600">
+            <p className="font-semibold">
+              Unable to create property
+            </p>
+
+            <p className="mt-1 text-sm">
+              {error}
+            </p>
           </div>
         )}
 
-        <div>
-          <label className="mb-1 block text-sm font-medium">
+        {/* Property Title */}
+        <div className="mb-5">
+          <label
+            htmlFor="title"
+            className="mb-2 block text-sm font-semibold text-gray-700"
+          >
             Property Title
           </label>
 
           <input
+            id="title"
             name="title"
             value={form.title}
             onChange={handleChange}
-            className="w-full rounded-md border px-4 py-2"
             placeholder="2 BHK Apartment"
+            className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
           />
         </div>
 
-        <div>
-          <label className="mb-1 block text-sm font-medium">
+        {/* Description */}
+        <div className="mb-5">
+          <label
+            htmlFor="description"
+            className="mb-2 block text-sm font-semibold text-gray-700"
+          >
             Description
           </label>
 
           <textarea
+            id="description"
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="w-full rounded-md border px-4 py-2"
             rows="4"
+            placeholder="Describe the property..."
+            className="w-full resize-none rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
           />
         </div>
 
-        <div>
-          <label className="mb-1 block text-sm font-medium">
+        {/* Location */}
+        <div className="mb-5">
+          <label
+            htmlFor="location"
+            className="mb-2 block text-sm font-semibold text-gray-700"
+          >
             Location
           </label>
 
           <input
+            id="location"
             name="location"
             value={form.location}
             onChange={handleChange}
-            className="w-full rounded-md border px-4 py-2"
             placeholder="Hyderabad"
+            className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
           />
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* Rent + Property Type */}
+        <div className="mb-5 grid gap-5 sm:grid-cols-2">
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
+            <label
+              htmlFor="rent"
+              className="mb-2 block text-sm font-semibold text-gray-700"
+            >
               Monthly Rent
             </label>
 
-            <input
-              type="number"
-              name="rent"
-              value={form.rent}
-              onChange={handleChange}
-              className="w-full rounded-md border px-4 py-2"
-            />
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                ₹
+              </span>
+
+              <input
+                id="rent"
+                type="number"
+                name="rent"
+                value={form.rent}
+                onChange={handleChange}
+                placeholder="18000"
+                className="w-full rounded-xl border border-gray-300 bg-gray-50 py-3 pl-9 pr-4 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
+            <label
+              htmlFor="propertyType"
+              className="mb-2 block text-sm font-semibold text-gray-700"
+            >
               Property Type
             </label>
 
             <select
+              id="propertyType"
               name="propertyType"
               value={form.propertyType}
               onChange={handleChange}
-              className="w-full rounded-md border px-4 py-2"
+              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
             >
-              <option>Apartment</option>
-              <option>Villa</option>
-              <option>House</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="House">House</option>
             </select>
           </div>
 
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        {/* Bedrooms + Bathrooms */}
+        <div className="mb-8 grid gap-5 sm:grid-cols-2">
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
+            <label
+              htmlFor="bedrooms"
+              className="mb-2 block text-sm font-semibold text-gray-700"
+            >
               Bedrooms
             </label>
 
             <input
+              id="bedrooms"
               type="number"
               name="bedrooms"
               value={form.bedrooms}
               onChange={handleChange}
-              className="w-full rounded-md border px-4 py-2"
+              placeholder="2"
+              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
+            <label
+              htmlFor="bathrooms"
+              className="mb-2 block text-sm font-semibold text-gray-700"
+            >
               Bathrooms
             </label>
 
             <input
+              id="bathrooms"
               type="number"
               name="bathrooms"
               value={form.bathrooms}
               onChange={handleChange}
-              className="w-full rounded-md border px-4 py-2"
+              placeholder="2"
+              className="w-full rounded-xl border border-gray-300 bg-gray-50 px-4 py-3 text-gray-800 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-100"
             />
           </div>
 
         </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded-md bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
-        >
-          {loading ? "Creating..." : "Create Property"}
-        </button>
+        {/* Buttons */}
+        <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+
+          <button
+            type="button"
+            onClick={() => navigate("/properties")}
+            className="rounded-xl border border-gray-300 px-6 py-3 font-medium text-gray-700 transition hover:bg-gray-50"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {loading ? "Creating..." : "Create Property"}
+          </button>
+
+        </div>
 
       </form>
     </main>
