@@ -15,6 +15,7 @@ function PropertyCard({ property, onDelete }) {
   //   setShowLogin(true);
   // }
   // }
+}
 
   return (
     <>
@@ -111,10 +112,5 @@ function PropertyCard({ property, onDelete }) {
      )}
         </>
       )}
-
-  
-
-
-
-export default PropertyCard
-    }
+export default PropertyCard;
+    
