@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const propertyRoutes = require("./routes/propertyRoutes");
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
   });
 });
 
+app.use("/api/auth", authRoutes);
 app.use("/api/properties", propertyRoutes);
 
 app.use((req, res) => {
