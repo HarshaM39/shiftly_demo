@@ -12,6 +12,10 @@ function Properties() {
   const [properties, setProperties] = useState([]);
   const [search, setSearch] = useState("");
   const [propertyType, setPropertyType] = useState("");
+  const [minRent, setMinRent] = useState("");
+  const [maxRent, setMaxRent] = useState("");
+  const [bedrooms, setBedrooms] = useState("");
+  const [availability, setAvailability] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -56,16 +60,49 @@ function Properties() {
   };
 
   const filteredProperties = properties.filter((property) => {
-    const matchesLocation = property.location
-      .toLowerCase()
-      .includes(search.toLowerCase());
+    const matchesLocation =
+      search === "" ||
+      property.location
+        ?.toLowerCase()
+        .includes(search.toLowerCase());
 
     const matchesType =
       propertyType === "" ||
       property.propertyType === propertyType;
+    const matchesMinRent =
+      minRent === "" ||
+      Number(property.rent) >= Number(minRent);
 
-    return matchesLocation && matchesType;
+    const matchesMaxRent =
+      maxRent === "" ||
+      Number(property.rent) <= Number(maxRent);
+    const matchesBedrooms =
+      bedrooms === "" ||
+      Number(property.bedrooms) >= Number(bedrooms);
+
+    const matchesAvailability =
+      availability === "" ||
+      (availability === "available" && property.available === true) ||
+      (availability === "occupied" && property.available === false);
+
+    return (
+      matchesLocation &&
+      matchesType &&
+      matchesMinRent &&
+      matchesMaxRent &&
+      matchesBedrooms &&
+      matchesAvailability
+    );
   });
+
+  const clearFilters = () => {
+    setSearch("");
+    setPropertyType("");
+    setMinRent("");
+    setMaxRent("");
+    setBedrooms("");
+    setAvailability("");
+  };
 
   return (
     <main className="mx-auto max-w-6xl px-6 py-10">
@@ -85,7 +122,28 @@ function Properties() {
         setSearch={setSearch}
         propertyType={propertyType}
         setPropertyType={setPropertyType}
+        minRent={minRent}
+        setMinRent={setMinRent}
+        maxRent={maxRent}
+        setMaxRent={setMaxRent}
+        bedrooms={bedrooms}
+        setBedrooms={setBedrooms}
+        availability={availability}
+        setAvailability={setAvailability}
+        clearFilters={clearFilters}
       />
+
+      {!loading && !error && (
+        <div className="mb-5 flex items-center justify-between">
+          <p className="text-sm text-gray-500">
+            {filteredProperties.length}{" "}
+            {filteredProperties.length === 1
+              ? "property"
+              : "properties"}{" "}
+            found
+          </p>
+        </div>
+      )}
 
       {loading && (
         <div className="py-10 text-center text-gray-500">
@@ -102,8 +160,15 @@ function Properties() {
       {!loading && !error && filteredProperties.length === 0 && (
         <div className="rounded-lg bg-white p-10 text-center shadow">
           <p className="text-gray-500">
-            No properties found.
+            No properties found matching your filters.
           </p>
+
+          <button
+            onClick={clearFilters}
+            className="mt-4 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            Clear Filters
+          </button>
         </div>
       )}
 
