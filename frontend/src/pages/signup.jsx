@@ -1,41 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function Signup() {
   const navigate = useNavigate();
-// 18008333
+  const[name,setName]=useState("")
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const[role,setRole]=useState("")
 
-  const handleLogin = (e) => {
+
+  const handleSignup = (e) => {
   e.preventDefault();
 
-  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const user = {
+    name,
+    email,
+    password,
+    role,
+  };
 
-  if (!storedUser) {
-    alert("No account found. Please signup first.");
-    navigate("/signup");
-    return;
-  }
+  localStorage.setItem("user", JSON.stringify(user));
 
-  if (
-    email !== storedUser.email ||
-    password !== storedUser.password
-  ) {
-    alert("Invalid email or password.");
-    return;
-  }
+  alert("Registration successful!");
 
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("role", storedUser.role);
-
-  if (storedUser.role === "tenant") {
-    navigate("/properties");
-  } else if (storedUser.role === "landlord") {
-    navigate("/properties/add");
-  } else if (storedUser.role === "agent") {
-    navigate("/agent");
-  }
+  navigate("/login");
 };
 
   return (
@@ -43,14 +31,27 @@ function Login() {
       <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-lg">
 
         <h1 className="mb-2 text-3xl font-bold text-gray-800">
-          Login
+          Signup
         </h1>
 
         <p className="mb-6 text-gray-500">
-          Login to view properties.
+          create an account to view properties.
         </p>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSignup}>
+
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Name
+          </label>
+
+          <input
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="mb-4 w-full rounded-md border border-gray-300 px-4 py-3"
+          />
 
           <label className="mb-2 block text-sm font-medium text-gray-700">
             Email
@@ -77,13 +78,32 @@ function Login() {
             required
             className="mb-6 w-full rounded-md border border-gray-300 px-4 py-3"
           />
+          <label className="mb-2 block text-sm font-medium text-gray-700">
+            Role
+            </label>
+
+            <select
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+            required
+            className="mb-6 w-full rounded-md border border-gray-300 px-4 py-3"
+            >
+            <option value="">Select your role</option>
+            <option value="tenant">Tenant</option>
+            <option value="landlord">Landlord</option>
+            <option value="agent">Agent</option>
+
+            </select>
 
           <button
             type="submit"
             className="w-full rounded-md bg-violet-600 px-4 py-3 font-medium text-white hover:bg-violet-700"
           >
-            Login
+            Signup
           </button>
+          <p>
+            already have an account? <span className="text-blue-600 cursor-pointer" onClick={()=>navigate("/login")}>Login</span>
+          </p>
 
         </form>
 
@@ -92,4 +112,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
