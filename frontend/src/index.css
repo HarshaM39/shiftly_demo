@@ -2,6 +2,102 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f8fafc;
+  font-family: sans-serif, Arial;
+  background-color: #e3f2fd;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* global.css */
+@theme {
+  /* Rust — Light theme "Primary" (#C2412D) */
+  --color-rust-50: #fcf6f4;
+  --color-rust-100: #f6e2e0;
+  --color-rust-200: #ebc2bc;
+  --color-rust-300: #e0a096;
+  --color-rust-400: #d37668;
+  --color-rust-500: #c2412d;
+  --color-rust-600: #9f3525;
+  --color-rust-700: #78281c;
+  --color-rust-800: #4a1911;
+  --color-rust-900: #230c08;
+
+  /* Amber — Light theme "Secondary" (#A16207) */
+  --color-amber-50: #faf7f3;
+  --color-amber-100: #f1e7da;
+  --color-amber-200: #e1cdb0;
+  --color-amber-300: #d0b083;
+  --color-amber-400: #bb8e4c;
+  --color-amber-500: #a16207;
+  --color-amber-600: #845006;
+  --color-amber-700: #643d04;
+  --color-amber-800: #3d2503;
+  --color-amber-900: #1d1201;
+
+  /* Stone — "Tertiary", shared by both themes (#78716C) */
+  --color-stone-50: #f8f8f8;
+  --color-stone-100: #ebeae9;
+  --color-stone-200: #d4d2d0;
+  --color-stone-300: #bcb8b5;
+  --color-stone-400: #9e9995;
+  --color-stone-500: #78716c;
+  --color-stone-600: #625d59;
+  --color-stone-700: #4a4643;
+  --color-stone-800: #2e2b29;
+  --color-stone-900: #161413;
+
+  /* Charcoal — Light theme "Neutral" (#292524) */
+  --color-charcoal-50: #f4f4f4;
+  --color-charcoal-100: #dfdede;
+  --color-charcoal-200: #bbb9b9;
+  --color-charcoal-300: #949292;
+  --color-charcoal-400: #656261;
+  --color-charcoal-500: #292524;
+  --color-charcoal-600: #221e1e;
+  --color-charcoal-700: #191716;
+  --color-charcoal-800: #100e0e;
+  --color-charcoal-900: #070706;
+
+  /* Coral — Dark theme "Primary" (#F8715A) */
+  --color-coral-50: #fff8f7;
+  --color-coral-100: #feeae6;
+  --color-coral-200: #fdd2ca;
+  --color-coral-300: #fcb8ac;
+  --color-coral-400: #fa9988;
+  --color-coral-500: #f8715a;
+  --color-coral-600: #cb5d4a;
+  --color-coral-700: #9a4638;
+  --color-coral-800: #5e2b22;
+  --color-coral-900: #2d1410;
+
+  /* Gold — Dark theme "Secondary" (#FBBF24) */
+  --color-gold-50: #fffcf4;
+  --color-gold-100: #fef5de;
+  --color-gold-200: #feebb9;
+  --color-gold-300: #fddf92;
+  --color-gold-400: #fcd161;
+  --color-gold-500: #fbbf24;
+  --color-gold-600: #ce9d1e;
+  --color-gold-700: #9c7616;
+  --color-gold-800: #5f490e;
+  --color-gold-900: #2d2206;
+
+  /* Onyx — Dark theme "Neutral" (#1C1917) */
+  --color-onyx-50: #f4f3f3;
+  --color-onyx-100: #dddcdc;
+  --color-onyx-200: #b6b5b5;
+  --color-onyx-300: #8e8c8b;
+  --color-onyx-400: #5c5958;
+  --color-onyx-500: #1c1917;
+  --color-onyx-600: #171413;
+  --color-onyx-700: #11100e;
+  --color-onyx-800: #0b0a09;
+  --color-onyx-900: #050504;
+
+  --color-background: #faf7f2;
+  --color-surface: #ffffff;
+  --color-border: #e7e5e4;
+
+  --color-dark-background: #1c1917;
+  --color-dark-surface: #292524;
 }

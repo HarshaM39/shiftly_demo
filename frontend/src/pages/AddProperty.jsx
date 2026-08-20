@@ -13,7 +13,7 @@ function AddProperty() {
     rent: "",
     bedrooms: "",
     bathrooms: "",
-    propertyType: "Apartment"
+    propertyType: "Apartment",
   });
 
   const [error, setError] = useState("");
@@ -24,7 +24,7 @@ function AddProperty() {
 
     setForm((current) => ({
       ...current,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -47,20 +47,17 @@ function AddProperty() {
 
   return (
     <main className="mx-auto max-w-2xl px-6 py-10">
-
-      <h1 className="mb-8 text-3xl font-bold">
+      <h1 className="mb-8 text-3xl font-bold text-rust-500 dark:text-coral-500">
         Add Property
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="space-y-5 rounded-xl bg-white p-6 shadow"
+        className="space-y-5 rounded-xl bg-amber-50 text-amber-700 dark:bg-charcoal-500
+        dark:text-amber-50 p-6 shadow "
       >
-
         {error && (
-          <div className="rounded-md bg-red-50 p-3 text-red-600">
-            {error}
-          </div>
+          <div className="rounded-md bg-red-50 p-3 text-red-600">{error}</div>
         )}
 
         <div>
@@ -78,9 +75,7 @@ function AddProperty() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            Description
-          </label>
+          <label className="mb-1 block text-sm font-medium">Description</label>
 
           <textarea
             name="description"
@@ -92,9 +87,7 @@ function AddProperty() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            Location
-          </label>
+          <label className="mb-1 block text-sm font-medium">Location</label>
 
           <input
             name="location"
@@ -106,7 +99,6 @@ function AddProperty() {
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-
           <div>
             <label className="mb-1 block text-sm font-medium">
               Monthly Rent
@@ -137,15 +129,11 @@ function AddProperty() {
               <option>House</option>
             </select>
           </div>
-
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
-
           <div>
-            <label className="mb-1 block text-sm font-medium">
-              Bedrooms
-            </label>
+            <label className="mb-1 block text-sm font-medium">Bedrooms</label>
 
             <input
               type="number"
@@ -157,9 +145,7 @@ function AddProperty() {
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
-              Bathrooms
-            </label>
+            <label className="mb-1 block text-sm font-medium">Bathrooms</label>
 
             <input
               type="number"
@@ -169,17 +155,16 @@ function AddProperty() {
               className="w-full rounded-md border px-4 py-2"
             />
           </div>
-
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full rounded-md bg-blue-600 px-5 py-3 font-medium text-white hover:bg-blue-700 disabled:opacity-50"
+          className="w-full rounded-md bg-amber-500 px-5 py-3 font-medium text-amber-50 dark:text-onyx-50
+          hover:bg-amber-400 dark:bg-gold-700 dark:hover:bg-gold-600 disabled:opacity-50 cursor-pointer"
         >
           {loading ? "Creating..." : "Create Property"}
         </button>
-
       </form>
     </main>
   );
