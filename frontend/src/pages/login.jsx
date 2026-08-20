@@ -84,6 +84,10 @@ function Login() {
           >
             Login
           </button>
+          <p>
+            Don't have an account? <span className="text-blue-600 cursor-pointer" onClick={()=>navigate("/signup")}>Signup</span>
+          </p>
+
 
         </form>
 

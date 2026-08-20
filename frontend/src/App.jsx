@@ -11,31 +11,29 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-50">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-6 py-8">
 
-      <Routes>
-        <Route path="/"
+      <main className="max-w-7xl mx-auto px-6 py-8">
+        <Routes>
+
+          {/* Public - anyone can view properties */}
+          <Route path="/" element={<Properties />} />
+          <Route path="/properties" element={<Properties />} />
+
+          {/* Public */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
+          {/* Only landlord can add properties */}
+          <Route
+            path="/properties/add"
             element={
-              <ProtectedRoute
-                allowedRoles={["tenant", "landlord", "agent"]}
-              >
-                <Properties />
+              <ProtectedRoute allowedRoles={["landlord"]}>
+                <AddProperty />
               </ProtectedRoute>
             }
           />
-        <Route path="/properties" 
-          element={
-        <ProtectedRoute allowedRoles={["tenant", "landlord", "agent"]}>
-          <Properties /></ProtectedRoute>} />
 
-        <Route path="/properties/add" element={
-          <ProtectedRoute allowedRoles={["landlord"]}>
-            <AddProperty />
-          </ProtectedRoute>
-        } />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+        </Routes>
       </main>
     </div>
   );
