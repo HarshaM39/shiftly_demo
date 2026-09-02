@@ -1,3 +1,7 @@
+/* =========================================
+   RENT EASE - COMPLETE APP.CSS
+========================================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -10,7 +14,10 @@ body {
   color: #12344d;
 }
 
-/* Navbar */
+/* =========================================
+   NAVBAR
+========================================= */
+
 .navbar {
   height: 70px;
   background: white;
@@ -46,6 +53,10 @@ nav a {
   font-size: 13px;
 }
 
+nav a:hover {
+  color: #159999;
+}
+
 .list-btn,
 .search-btn {
   background: #12344d;
@@ -53,47 +64,89 @@ nav a {
   border: none;
   padding: 12px 18px;
   border-radius: 8px;
+  cursor: pointer;
 }
 
-/* Hero */
+.list-btn:hover,
+.search-btn:hover {
+  background: #159999;
+}
+
+/* =========================================
+   HERO
+========================================= */
 .hero {
-  min-height: 560px;
-  padding: 70px 7%;
+  min-height: 620px;
+  padding: 80px 8%;
   display: flex;
   align-items: center;
-  gap: 50px;
-  background: linear-gradient(135deg, #eefafa, #dceff2);
+  justify-content: space-between;
+  gap: 70px;
+  background: linear-gradient(135deg, #f8fbff, #eef6f8);
+  box-sizing: border-box;
 }
 
 .hero-content {
   flex: 1;
+  max-width: 560px;
 }
 
-.small-title {
-  color: #159999;
-  font-size: 11px;
+.hero-label {
+  font-size: 14px;
+  font-weight: 700;
   letter-spacing: 2px;
-  font-weight: bold;
-  margin-bottom: 15px;
+  color: #4f7c8a;
+  margin-bottom: 18px;
 }
 
-.hero h1 {
-  font-size: 55px;
-  line-height: 1.1;
-  margin-bottom: 15px;
+.hero-content h1 {
+  font-size: 58px;
+  line-height: 1.08;
+  margin: 0 0 22px;
+  color: #173b5c;
+  font-weight: 800;
 }
 
-.hero h1 .highlight {
-  color: #159999;
+.hero-content h1 span {
+  color: #3d7182;
 }
 
-.description {
-  color: #687984;
-  line-height: 1.6;
-  margin-bottom: 25px;
+.hero-content > p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #5d6b75;
+  margin-bottom: 30px;
 }
 
-/* Search */
+.hero-btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 10px;
+  background: #173b5c;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hero-family-image {
+  flex: 1;
+  max-width: 570px;
+  height: 500px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(23, 59, 92, 0.18);
+}
+
+.hero-family-image .family-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* =========================================
+   SEARCH BOX
+========================================= */
+
 .search-box {
   background: white;
   padding: 10px;
@@ -108,6 +161,10 @@ nav a {
   border-right: 1px solid #ddd;
 }
 
+.search-field:last-of-type {
+  border-right: none;
+}
+
 .search-field label {
   display: block;
   font-size: 8px;
@@ -119,9 +176,15 @@ nav a {
   border: none;
   outline: none;
   width: 100%;
+  background: white;
+  color: #333;
+  cursor: pointer;
 }
 
-/* Image */
+/* =========================================
+   HERO IMAGE
+========================================= */
+
 .hero-image {
   flex: 1;
 }
@@ -131,20 +194,93 @@ nav a {
   height: 580px;
   object-fit: cover;
   border-radius: 20px;
+  display: block;
 }
 
-/* Sections */
-.locations,
-.properties,
-.about {
-  padding: 70px 7%;
+/* =========================================
+   COMMON SECTIONS
+========================================= */
+
+/* ================= TESTIMONIALS ================= */
+
+.testimonials {
+  padding: 80px 7%;
+  background: #f7faff;
+}
+
+.testimonials .section-heading {
+  max-width: 900px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.testimonials .section-heading p {
+  color: #159999;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.testimonials .section-heading h2 {
+  color: #173b5c;
+  font-size: 42px;
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 60px 5%;
+  }
+
+  .testimonials .section-heading h2 {
+    font-size: 32px;
+  }
+
+ .testimonials .property-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 50px;
+  box-sizing: border-box;
   background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(23, 59, 92, 0.12);
 }
 
+.testimonials .property-info {
+  width: 100%;
+  text-align: left;
+}
+
+.testimonials .property-info h3 {
+  font-size: 28px;
+  margin: 0 0 20px;
+  color: #e5a928;
+  letter-spacing: 4px;
+}
+
+.testimonials .property-info p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #34495e;
+  margin: 0 0 20px;
+}
+
+.testimonials .property-info strong {
+  font-size: 18px;
+  color: #173b5c;
+}
+}
 .section-heading h2 {
   font-size: 35px;
   margin-bottom: 30px;
 }
+
+/* =========================================
+   LOCATIONS + PROPERTIES
+========================================= */
 
 .location-grid,
 .property-grid {
@@ -158,6 +294,13 @@ nav a {
   background: #f5f8f9;
   border-radius: 15px;
   overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.location-card:hover,
+.property-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .location-card img,
@@ -165,6 +308,7 @@ nav a {
   width: 100%;
   height: 180px;
   object-fit: cover;
+  display: block;
 }
 
 .location-card div,
@@ -183,7 +327,10 @@ nav a {
   font-size: 13px;
 }
 
-/* About */
+/* =========================================
+   ABOUT
+========================================= */
+
 .about {
   display: flex;
   gap: 50px;
@@ -198,6 +345,7 @@ nav a {
 .about-image img {
   width: 100%;
   border-radius: 20px;
+  display: block;
 }
 
 .about-content h2 {
@@ -210,43 +358,10 @@ nav a {
   line-height: 1.6;
 }
 
-/* Footer */
-footer {
-  background: #12344d;
-  color: white;
-  padding: 35px 7%;
-  text-align: center;
-}
+/* =========================================
+   STATS
+========================================= */
 
-/* Mobile */
-@media (max-width: 800px) {
-  nav {
-    display: none;
-  }
-
-  .hero,
-  .about {
-    flex-direction: column;
-  }
-
-  .hero h1 {
-    font-size: 42px;
-  }
-
-  .search-box {
-    flex-direction: column;
-  }
-
-  .search-field {
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .location-grid,
-  .property-grid {
-    grid-template-columns: 1fr;
-  }
-}
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -272,18 +387,13 @@ footer {
   border-right: 1px solid #eee;
 }
 
-@media (max-width: 700px) {
-  .stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .stats div {
-    border-right: 0;
-  }
+.stats div:last-child {
+  border-right: none;
 }
-/* ==============================
+
+/* =========================================
    NEXT-GEN LIFESTYLE SECTION
-================================ */
+========================================= */
 
 .lifestyle-section {
   padding: 80px 8%;
@@ -378,37 +488,13 @@ footer {
   color: #183b2a;
 }
 
-/* TABLET */
-
-@media (max-width: 900px) {
-  .lifestyle-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .lifestyle-section .section-heading h2 {
-    font-size: 30px;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-  .lifestyle-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .lifestyle-section {
-    padding: 60px 5%;
-  }
-}
-/* =========================
-   RENTEASE SMART MATCH
-========================= */
+/* =========================================
+   SMART MATCH
+========================================= */
 
 .smart-match {
   width: 100%;
   padding: 90px 8%;
-  box-sizing: border-box;
   background: #183b2a;
 }
 
@@ -451,7 +537,9 @@ footer {
   max-width: 500px;
 }
 
-/* MATCH BOX */
+/* =========================================
+   MATCH BOX
+========================================= */
 
 .match-box {
   background: white;
@@ -507,34 +595,10 @@ footer {
   transform: translateY(-2px);
 }
 
-/* TABLET */
+/* =========================================
+   MATCH RESULT
+========================================= */
 
-@media (max-width: 850px) {
-  .smart-match-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .smart-match-text h2 {
-    font-size: 38px;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 600px) {
-  .smart-match {
-    padding: 60px 5%;
-  }
-
-  .smart-match-text h2 {
-    font-size: 32px;
-  }
-
-  .match-box {
-    padding: 25px;
-  }
-}
 .match-result {
   margin-top: 20px;
   padding: 20px;
@@ -562,507 +626,1415 @@ footer {
   color: white;
   cursor: pointer;
 }
-/* =========================
-   MATCHING HOMES
-========================= */
 
-.matching-homes {
-  padding: 80px 8%;
+.view-home-btn:hover {
+  background: #39704e;
+}
+
+/* =========================================
+   MATCHING HOMES
+========================================= */
+
+#matching-homes {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 70px 5%;
+  box-sizing: border-box;
   background: #f8f5ef;
 }
 
-.matching-homes .section-heading {
+#matching-homes .section-heading {
   text-align: center;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 }
 
-.matching-homes .section-heading p {
+#matching-homes .section-heading p {
   color: #e67e22;
   font-weight: 700;
   letter-spacing: 2px;
   margin-bottom: 8px;
 }
 
-.matching-homes .section-heading h2 {
+#matching-homes .section-heading h2 {
   font-size: 36px;
   margin: 8px 0;
   color: #222;
 }
 
-.matching-homes .section-heading span {
+#matching-homes .section-heading span {
   color: #777;
   font-size: 16px;
 }
 
+/* =========================================
+   MATCHING GRID
+========================================= */
 
+#matching-homes .matching-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  width: 100%;
+  align-items: stretch;
+}
 
-.matching-card {
+/* =========================================
+   MATCHING CARD
+========================================= */
+
+#matching-homes .matching-card {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
   background: white;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   transition: 0.3s ease;
-  height: auto;
-  align-self:
-}
-
-.matching-card:hover {
-  transform: translateY(-8px);
-}
-
-.matching-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.matching-info {
-  padding: 22px;
-}
-
-.matching-info h3 {
-  margin: 0 0 10px;
-  font-size: 20px;
-  color: #222;
-}
-
-.matching-info p {
-  color: #777;
-  margin: 8px 0;
-}
-
-.matching-info h4 {
-  font-size: 20px;
-  margin: 15px 0;
-  color: #222;
-}
-
-.home-details {
+  height: 100%;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
-.home-details span {
-  background: #f3eee6;
-  padding: 7px 10px;
-  border-radius: 8px;
-  font-size: 13px;
+#matching-homes .matching-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-.matching-info button {
+/* =========================================
+   MATCHING CARD IMAGE
+========================================= */
+
+#matching-homes .matching-card img {
+  display: block;
   width: 100%;
-  padding: 12px;
+  height: 190px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   MATCHING INFO
+========================================= */
+
+#matching-homes .matching-info {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+#matching-homes .matching-info h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #222;
+  line-height: 1.3;
+}
+
+#matching-homes .matching-info p {
+  color: #777;
+  margin: 5px 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+#matching-homes .matching-info h4 {
+  font-size: 17px;
+  margin: 10px 0 14px;
+  color: #222;
+}
+
+/* =========================================
+   HOME DETAILS
+========================================= */
+
+#matching-homes .home-details {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+#matching-homes .home-details span {
+  background: #f3eee6;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* =========================================
+   MATCHING CARD BUTTON
+========================================= */
+
+#matching-homes .matching-info button {
+  width: 100%;
+  padding: 11px;
   border: none;
   border-radius: 10px;
   background: #222;
   color: white;
-  font-size: 15px;
+  font-size: 13px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease;
+  margin-top: auto;
 }
 
-.matching-info button:hover {
+#matching-homes .matching-info button:hover {
   background: #e67e22;
+  transform: translateY(-2px);
 }
 
-/* Tablet */
-@media (max-width: 900px) {
-  .matching-grid {
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  background: #12344d;
+  color: white;
+  padding: 35px 7%;
+  text-align: center;
+}
+
+/* =========================================
+   TABLET - LIFESTYLE
+========================================= */
+
+@media (max-width: 1100px) {
+  .lifestyle-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
 
-/* Mobile */
-@media (max-width: 600px) {
-  .matching-grid {
-    grid-template-columns: 1fr;
+  #matching-homes {
+    padding-left: 4%;
+    padding-right: 4%;
   }
 
-  .matching-homes {
-    padding: 60px 5%;
-  }
-
-  .matching-homes .section-heading h2 {
-    font-size: 28px;
-  }
-}
-/* QUICK FIX - MATCHING HOMES SIZE */
-
-.matching-homes {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  box-sizing: border-box;
-}
-
-.matching-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 20px !important;
-  width: 100% !important;
-  align-items: start !important;
-}
-
-.matching-card {
-  width: 100% !important;
-  max-width: 360px !important;
-  min-width: 0 !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-}
-
-.matching-card img {
-  display: block !important;
-  width: 100% !important;
-  height: 160px !important;
-  object-fit: cover !important;
-}
-
-.matching-info {
-  padding: 12px !important;
-}
-
-.matching-info h3 {
-  font-size: 16px !important;
-  margin: 0 0 6px !important;
-}
-
-.matching-info p {
-  font-size: 13px !important;
-  margin: 4px 0 !important;
-}
-
-.matching-info h4 {
-  font-size: 14px !important;
-  margin: 6px 0 !important;
-}
-
-.home-details {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  font-size: 11px !important;
-}
-
-.matching-card button {
-  width: 100% !important;
-  padding: 9px !important;
-  font-size: 12px !important;
-}
-
-/* Keep cards horizontal on laptop */
-@media (min-width: 901px) {
-  .matching-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .matching-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .matching-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-/* QUICK FIX - MATCHING HOMES SIZE */
-
-.matching-homes {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  box-sizing: border-box;
-}
-
-.matching-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 20px !important;
-  width: 100% !important;
-  align-items: start !important;
-}
-
-.matching-card {
-  width: 100% !important;
-  max-width: 360px !important;
-  min-width: 0 !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-}
-
-.matching-card img {
-  display: block !important;
-  width: 100% !important;
-  height: 160px !important;
-  object-fit: cover !important;
-}
-
-.matching-info {
-  padding: 12px !important;
-}
-
-.matching-info h3 {
-  font-size: 16px !important;
-  margin: 0 0 6px !important;
-}
-
-.matching-info p {
-  font-size: 13px !important;
-  margin: 4px 0 !important;
-}
-
-.matching-info h4 {
-  font-size: 14px !important;
-  margin: 6px 0 !important;
-}
-
-.home-details {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  font-size: 11px !important;
-}
-
-.matching-card button {
-  width: 100% !important;
-  padding: 9px !important;
-  font-size: 12px !important;
-}
-
-/* Keep cards horizontal on laptop */
-@media (min-width: 901px) {
-  .matching-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .matching-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .matching-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-/* QUICK FIX - MATCHING HOMES SIZE */
-
-.matching-homes {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 30px;
-  box-sizing: border-box;
-}
-
-.matching-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 20px !important;
-  width: 100% !important;
-  align-items: start !important;
-}
-
-.matching-card {
-  width: 100% !important;
-  max-width: 360px !important;
-  min-width: 0 !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-  overflow: hidden !important;
-}
-
-.matching-card img {
-  display: block !important;
-  width: 100% !important;
-  height: 160px !important;
-  object-fit: cover !important;
-}
-
-.matching-info {
-  padding: 12px !important;
-}
-
-.matching-info h3 {
-  font-size: 16px !important;
-  margin: 0 0 6px !important;
-}
-
-.matching-info p {
-  font-size: 13px !important;
-  margin: 4px 0 !important;
-}
-
-
-.matching-info h4 {
-  font-size: 14px !important;
-  margin: 6px 0 !important;
-}
-
-.home-details {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  font-size: 11px !important;
-}
-
-.matching-card button {
-  width: 100% !important;
-  padding: 9px !important;
-  font-size: 12px !important;
-}
-
-/* Keep cards horizontal on laptop */
-@media (min-width: 901px) {
-  .matching-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  .matching-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .matching-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-/* ===== MATCHING HOMES - FINAL FIX ===== */
-
-#matching-homes {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 30px;
-  box-sizing: border-box;
-}
-
-#matching-homes .section-heading {
-  text-align: center;
-  margin-bottom: 35px;
-}
-
-/* FOUR CARDS IN ONE STRAIGHT ROW */
-#matching-homes .matching-grid {
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 20px !important;
-  width: 100% !important;
-  align-items: stretch !important;
-}
-
-/* CARD */
-#matching-homes .matching-grid > .matching-card {
-  width: 100% !important;
-  max-width: none !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 100% !important;
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-/* IMAGE */
-#matching-homes .matching-card img {
-  display: block !important;
-  width: 100% !important;
-  height: 180px !important;
-  object-fit: cover !important;
-}
-
-/* CARD CONTENT */
-#matching-homes .matching-info {
-  padding: 16px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  flex: 1 !important;
-}
-
-/* TITLE */
-#matching-homes .matching-info h3 {
-  margin: 0 0 8px !important;
-  font-size: 17px !important;
-}
-
-/* LOCATION */
-#matching-homes .matching-info p {
-  margin: 0 0 8px !important;
-  font-size: 13px !important;
-}
-
-/* PRICE */
-#matching-homes .matching-info h4 {
-  margin: 6px 0 12px !important;
-  font-size: 15px !important;
-}
-
-/* DETAILS */
-#matching-homes .home-details {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  margin-bottom: 15px !important;
-}
-
-/* BUTTON */
-#matching-homes .matching-card button {
-  width: 100% !important;
-  margin-top: auto !important;
-  padding: 10px !important;
-  font-size: 12px !important;
-}
-
-/* ===== LAPTOP ===== */
-@media (max-width: 1100px) {
   #matching-homes .matching-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 15px !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
   }
 
   #matching-homes .matching-card img {
-    height: 160px !important;
+    height: 160px;
+  }
+
+  #matching-homes .matching-info {
+    padding: 13px;
+  }
+
+  #matching-homes .matching-info h3 {
+    font-size: 16px;
+  }
+
+  #matching-homes .matching-info h4 {
+    font-size: 14px;
+  }
+
+  #matching-homes .home-details span {
+    font-size: 10px;
+    padding: 5px 6px;
   }
 }
 
-/* ===== TABLET ===== */
-@media (max-width: 850px) {
+/* =========================================
+   TABLET - SMART MATCH
+========================================= */
+
+@media (max-width: 900px) {
+  nav {
+    display: none;
+  }
+
+  .hero,
+  .about {
+    flex-direction: column;
+  }
+
+  .hero {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  .hero-content,
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-image img {
+    height: 450px;
+  }
+
+  .hero h1 {
+    font-size: 42px;
+  }
+
+  .location-grid,
+  .property-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .smart-match-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .smart-match-text h2 {
+    font-size: 38px;
+  }
+
   #matching-homes .matching-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #matching-homes .matching-card img {
+    height: 190px;
+  }
+
+  #matching-homes .matching-info {
+    padding: 16px;
+  }
+}
+
+/* =========================================
+   MOBILE - 700
+========================================= */
+
+@media (max-width: 700px) {
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats div {
+    border-right: 0;
+  }
+
+  .hero {
+    gap: 30px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-field {
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .search-field:last-of-type {
+    border-bottom: none;
+  }
+
+  .location-grid,
+  .property-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lifestyle-section .section-heading h2 {
+    font-size: 30px;
+  }
+}
+
+/* =========================================
+   MOBILE - 600
+========================================= */
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 45px 5%;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-image img {
+    height: 350px;
+  }
+
+  .locations,
+  .properties,
+  .about {
+    padding: 55px 5%;
+  }
+
+  .about-content h2 {
+    font-size: 30px;
+  }
+
+  .lifestyle-section {
+    padding: 60px 5%;
+  }
+
+  .lifestyle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smart-match {
+    padding: 60px 5%;
+  }
+
+  .smart-match-text h2 {
+    font-size: 32px;
+  }
+
+  .match-box {
+    padding: 25px;
+  }
+
+  #matching-homes {
+    padding: 55px 5%;
+  }
+
+  #matching-homes .section-heading h2 {
+    font-size: 28px;
+  }
+
+  #matching-homes .matching-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #matching-homes .matching-card img {
+    height: 220px;
+  }
+
+  #matching-homes .matching-info {
+    padding: 18px;
+  }
+
+  #matching-homes .matching-info h3 {
+    font-size: 18px;
+  }
+
+  #matching-homes .matching-info h4 {
+    font-size: 17px;
+  }
+}
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .stats h2 {
+    font-size: 23px;
+  }
+
+  .stats p {
+    font-size: 11px;
+  }
+
+  .match-options button {
+    width: 100%;
+  }
+
+  #matching-homes .matching-card img {
+    height: 190px;
+  }
+}
+/* FAMILY IMAGE */
+.family-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+/* THREE LIFESTYLE CARDS */
+.lifestyle-grid {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+/* =========================================
+   FINAL LIFESTYLE CARD FIX
+========================================= */
+
+.lifestyle-section {
+  width: 100%;
+  padding: 70px 6%;
+  background: #f8f5ef;
+  box-sizing: border-box;
+}
+
+.lifestyle-section .section-heading {
+  text-align: center;
+  margin: 0 auto 40px;
+}
+
+/* EXACTLY 3 EQUAL COLUMNS */
+
+.lifestyle-grid {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 24px !important;
+  align-items: stretch !important;
+}
+
+/* ALL THREE CARDS SAME SIZE */
+
+.lifestyle-grid > .lifestyle-card {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 24px 25px !important;
+
+  box-sizing: border-box !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  min-height: 500px !important;
+
+  background: white !important;
+
+  border-radius: 20px !important;
+  overflow: hidden !important;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* REMOVE ANY OLD SPECIAL FAMILY SIZING */
+
+.lifestyle-grid > .family-card {
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+/* ALL THREE IMAGES SAME SIZE */
+
+.lifestyle-grid .lifestyle-card-image,
+.lifestyle-grid .family-image {
+  width: calc(100% + 48px) !important;
+  height: 220px !important;
+
+  object-fit: cover !important;
+  display: block !important;
+
+  margin-left: -24px !important;
+  margin-right: -24px !important;
+  margin-top: 0 !important;
+  margin-bottom: 20px !important;
+
+  border-radius: 0 !important;
+}
+
+/* ICON */
+
+.lifestyle-grid .lifestyle-icon {
+  width: 55px !important;
+  height: 55px !important;
+
+  flex-shrink: 0 !important;
+
+  border-radius: 15px !important;
+  background: #e8f2ea !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 25px !important;
+
+  margin-bottom: 16px !important;
+}
+
+/* TITLES */
+
+.lifestyle-grid .lifestyle-card h3 {
+  color: #183b2a !important;
+  font-size: 20px !important;
+
+  margin: 0 0 10px !important;
+}
+
+/* DESCRIPTION */
+
+.lifestyle-grid .lifestyle-card p {
+  color: #727b75 !important;
+
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+
+  min-height: 55px !important;
+
+  margin: 0 0 15px !important;
+}
+
+/* BUTTON */
+
+.lifestyle-grid .lifestyle-card button {
+  width: auto !important;
+
+  margin-top: auto !important;
+
+  padding: 0 !important;
+
+  border: none !important;
+  background: none !important;
+
+  color: #39704e !important;
+
+  font-size: 14px !important;
+  font-weight: 700 !important;
+
+  text-align: left !important;
+
+  cursor: pointer !important;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .lifestyle-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
+
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 550px) {
-  #matching-homes {
-    padding: 35px 15px;
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .lifestyle-section {
+    padding: 55px 5% !important;
   }
 
-  #matching-homes .matching-grid {
+  .lifestyle-grid {
     grid-template-columns: 1fr !important;
   }
+
+  .lifestyle-grid > .lifestyle-card {
+    min-height: auto !important;
+  }
+
+}
+/* =========================================
+   PROPERTY DETAILS PAGE
+========================================= */
+
+.property-details-page {
+  min-height: 100vh;
+  background: #f5f8f7;
+  padding: 45px 7%;
+}
+
+/* BACK BUTTON */
+
+.property-back-btn {
+  display: inline-block;
+  margin-bottom: 25px;
+  padding: 10px 18px;
+
+  background: white;
+  color: #183b2a;
+
+  border: 1px solid #dce6df;
+  border-radius: 9px;
+
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.property-back-btn:hover {
+  background: #183b2a;
+  color: white;
+}
+
+/* MAIN CARD */
+
+.property-details-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  background: white;
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* IMAGE */
+
+.property-details-image {
+  width: 100%;
+  height: 500px;
+
+  object-fit: cover;
+  display: block;
+}
+
+/* INFORMATION */
+
+.property-details-content {
+  padding: 35px 40px 40px;
+}
+
+/* SMALL LABEL */
+
+.property-label {
+  color: #39704e;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 8px;
+}
+
+/* TITLE */
+
+.property-details-content h1 {
+  color: #183b2a;
+
+  font-size: 38px;
+
+  margin: 0 0 10px;
+
+  line-height: 1.2;
+}
+
+/* LOCATION */
+
+.property-location {
+  color: #718078;
+
+  font-size: 15px;
+
+  margin-bottom: 20px;
+}
+
+/* PRICE */
+
+.property-price {
+  color: #183b2a;
+
+  font-size: 28px;
+  font-weight: 800;
+
+  margin-bottom: 25px;
+}
+
+/* AMENITIES */
+
+.property-amenities {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-bottom: 30px;
+}
+
+.property-amenities span {
+  background: #edf5ef;
+
+  color: #31583f;
+
+  padding: 10px 14px;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ABOUT */
+
+.property-about {
+  border-top: 1px solid #e7ece9;
+
+  padding-top: 25px;
+
+  margin-top: 5px;
+}
+
+.property-about h2 {
+  color: #183b2a;
+
+  font-size: 22px;
+
+  margin-bottom: 12px;
+}
+
+.property-about p {
+  color: #68736d;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  max-width: 900px;
+}
+
+/* BUTTONS */
+
+.property-actions {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 30px;
+}
+
+.property-contact-btn {
+  padding: 13px 24px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #39704e;
+
+  color: white;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.property-contact-btn:hover {
+  background: #285b3c;
+}
+
+.property-home-btn {
+  padding: 13px 24px;
+
+  border: 1px solid #d6e1da;
+
+  border-radius: 10px;
+
+  background: white;
+
+  color: #183b2a;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.property-home-btn:hover {
+  background: #f0f5f1;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 800px) {
+
+  .property-details-page {
+    padding: 30px 5%;
+  }
+
+  .property-details-image {
+    height: 380px;
+  }
+
+  .property-details-content {
+    padding: 28px;
+  }
+
+  .property-details-content h1 {
+    font-size: 30px;
+  }
+
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+
+  .property-details-page {
+    padding: 20px 4%;
+  }
+
+  .property-details-image {
+    height: 260px;
+  }
+
+  .property-details-content {
+    padding: 22px;
+  }
+
+  .property-details-content h1 {
+    font-size: 25px;
+  }
+
+  .property-price {
+    font-size: 23px;
+  }
+
+  .property-actions {
+    flex-direction: column;
+  }
+
+  .property-contact-btn,
+  .property-home-btn {
+    width: 100%;
+  }
+
+}
+/* =========================================
+   PROPERTY DETAILS - CLEAN FINAL DESIGN
+========================================= */
+
+.property-details-page {
+  min-height: 100vh;
+  background: #f5f8f7;
+  padding: 40px 7%;
+  box-sizing: border-box;
+}
+
+/* BACK BUTTON */
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 25px;
+
+  padding: 10px 18px;
+
+  background: white;
+  color: #183b2a;
+
+  border: 1px solid #dce5df;
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.back-button:hover {
+  background: #183b2a;
+  color: white;
+}
+
+/* MAIN PROPERTY CARD */
+
+.property-details-card {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  background: white;
+
+  border-radius: 22px;
+
+  overflow: hidden;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* PROPERTY IMAGE */
+
+.property-details-image {
+  display: block;
+
+  width: 100%;
+  height: 480px;
+
+  object-fit: cover;
+}
+
+/* INFORMATION AREA */
+
+.property-details-info {
+  padding: 35px 40px 40px;
+}
+
+/* LABEL */
+
+.property-label {
+  margin: 0 0 8px;
+
+  color: #39704e;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+/* PROPERTY NAME */
+
+.property-details-info h1 {
+  margin: 0 0 10px;
+
+  color: #183b2a;
+
+  font-size: 38px;
+  line-height: 1.2;
+}
+
+/* LOCATION */
+
+.property-location {
+  margin: 0 0 20px;
+
+  color: #718078;
+
+  font-size: 15px;
+}
+
+/* PRICE */
+
+.property-details-info h2 {
+  margin: 0 0 25px;
+
+  color: #39704e;
+
+  font-size: 28px;
+  font-weight: 800;
+}
+
+/* FEATURES */
+
+.property-features {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  padding-bottom: 25px;
+
+  border-bottom: 1px solid #e7ece9;
+}
+
+.property-features span {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 10px 14px;
+
+  background: #edf5ef;
+
+  color: #31583f;
+
+  border-radius: 9px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+/* DESCRIPTION */
+
+.property-description {
+  padding-top: 25px;
+}
+
+.property-description h3 {
+  margin: 0 0 15px;
+
+  color: #183b2a;
+
+  font-size: 22px;
+}
+
+.property-description p {
+  margin: 0 0 10px;
+
+  color: #68736d;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+}
+
+.property-description strong {
+  color: #31583f;
+}
+
+/* ACTION BUTTONS */
+
+.details-actions {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 30px;
+}
+
+.contact-button,
+.back-home-button {
+  padding: 13px 22px;
+
+  border-radius: 10px;
+
+  font-size: 14px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+/* CONTACT */
+
+.contact-button {
+  border: none;
+
+  background: #39704e;
+
+  color: white;
+}
+
+.contact-button:hover {
+  background: #285b3c;
+}
+
+/* BACK HOME */
+
+.back-home-button {
+  border: 1px solid #d6e1da;
+
+  background: white;
+
+  color: #183b2a;
+}
+
+.back-home-button:hover {
+  background: #edf5ef;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .property-details-page {
+    padding: 25px 5%;
+  }
+
+  .property-details-image {
+    height: 300px;
+  }
+
+  .property-details-info {
+    padding: 25px;
+  }
+
+  .property-details-info h1 {
+    font-size: 30px;
+  }
+
+  .property-details-info h2 {
+    font-size: 24px;
+  }
+
+  .details-actions {
+    flex-direction: column;
+  }
+
+  .contact-button,
+  .back-home-button {
+    width: 100%;
+  }
+}
+/* ===== HERO FAMILY PICTURE ===== */
+
+.hero-family-image {
+  width: 420px;
+  height: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.hero-family-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .hero-family-image {
+    width: 100%;
+    max-width: 420px;
+    height: 280px;
+    margin: 30px auto 0;
+  }
+}
+.family-hero-image {
+  width: 520px;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 24px;
+  display: block;
+}
+/* ===== HERO FAMILY IMAGE - BIG ===== */
+
+.hero {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 60px !important;
+}
+
+.hero-content {
+  flex: 1 !important;
+}
+
+.hero-image {
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.family-hero-image {
+  width: 620px !important;
+  height: 420px !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  border-radius: 28px !important;
+  display: block !important;
+}
+.hero-family-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.family-hero-image {
+  width: 600px !important;
+  height: 420px !important;
+  max-width: 100% !important;
+  object-fit: cover !important;
+  border-radius: 25px !important;
+  display: block !important;
+}
+/* ===== MAKE HERO FAMILY IMAGE LARGE ===== */
+
+.hero {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  padding: 70px 6% !important;
+  gap: 50px !important;
+}
+
+.hero-content {
+  width: 45% !important;
+  flex: none !important;
+}
+
+.hero-family-image {
+  width: 50% !important;
+  flex: none !important;
+  display: block !important;
+}
+
+.hero-family-image img {
+  width: 100% !important;
+  height: 450px !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  border-radius: 28px !important;
+  display: block !important;
+}
+/* FINAL HERO IMAGE SIZE FIX */
+
+section.hero {
+  display: grid !important;
+  grid-template-columns: 42% 58% !important;
+  align-items: center !important;
+  gap: 30px !important;
+}
+
+section.hero .hero-content {
+  width: 100% !important;
+}
+
+section.hero .hero-family-image {
+  width: 100% !important;
+  max-width: none !important;
+  height: 520px !important;
+  flex: none !important;
+}
+
+section.hero .hero-family-image img,
+section.hero .hero-family-image .family-image,
+section.hero .hero-family-image .family-hero-image {
+  width: 100% !important;
+  height: 520px !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+/* ================= TESTIMONIALS ================= */
+
+.testimonials {
+  padding: 80px 7%;
+  background: #f7faff;
+}
+
+.testimonials .section-heading {
+  max-width: 900px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.testimonials .section-heading p {
+  color: #159999;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.testimonials .section-heading h2 {
+  color: #173b5c;
+  font-size: 42px;
+  margin: 0;
+}
+
+.testimonials .property-card {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 35px 45px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(23, 59, 92, 0.10);
+}
+
+.testimonials .property-info {
+  text-align: left;
+}
+
+.testimonials .property-info h3 {
+  font-size: 25px;
+  letter-spacing: 4px;
+  color: #e7a72d;
+  margin: 0 0 20px;
+}
+
+.testimonials .property-info p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #53677a;
+  margin-bottom: 20px;
+}
+
+.testimonials .property-info strong {
+  color: #173b5c;
+  font-size: 18px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 60px 5%;
+  }
+
+  .testimonials .section-heading h2 {
+    font-size: 32px;
+  }
+
+  .testimonials .property-card {
+    padding: 25px;
+  }
+}
+/* ===== FIX TESTIMONIAL LAYOUT ===== */
+
+.testimonials {
+  width: 100%;
+  padding: 80px 7%;
+  box-sizing: border-box;
+  background: #f7faff;
+}
+
+.testimonials .section-heading {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 35px;
+  text-align: center;
+}
+
+.testimonials .property-card {
+  display: block !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  min-width: 0 !important;
+  margin: 0 auto !important;
+  padding: 40px 50px !important;
+  box-sizing: border-box !important;
+  background: white !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 30px rgba(23, 59, 92, 0.12) !important;
+  transform: none !important;
+}
+
+.testimonials .property-info {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.testimonials .property-info h3 {
+  margin: 0 0 20px !important;
+  font-size: 28px !important;
+  letter-spacing: 4px !important;
+}
+
+.testimonials .property-info p {
+  margin: 0 0 20px !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+}
+
+.testimonials .property-info strong {
+  font-size: 18px !important;
 }

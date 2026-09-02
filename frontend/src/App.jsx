@@ -1,982 +1,972 @@
-import React , { useState } from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./App.css";
 
+import Properties from "./pages/Properties";
+import PropertyDetails from "./PropertyDetails";
+
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [lifestyle, setLifestyle] = useState("");
   const [budget, setBudget] = useState("");
   const [showMatch, setShowMatch] = useState(false);
-  const [selectedBudget, setSelectedBudget] = useState("₹20K - ₹30K");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [selectedProperty, setSelectedProperty] = useState("");
-  const isInBudget = (rent) => {
-  if (selectedBudget === "Any Budget") {
+
+  /* =========================
+     VIEW DETAILS FUNCTION
+  ========================= */
+
+  const handleViewDetails = (property) => {
+    navigate("/property-details", {
+      state: property,
+    });
+  };
+
+  /* =========================
+     BUDGET FUNCTION
+  ========================= */
+
+  const isInBudget = (price) => {
+    if (!budget) {
+      return true;
+    }
+
+    if (budget === "₹10K - ₹20K") {
+      return price >= 10000 && price <= 20000;
+    }
+
+    if (budget === "₹20K - ₹30K") {
+      return price >= 20000 && price <= 30000;
+    }
+
+    if (budget === "₹30K - ₹50K") {
+      return price >= 30000 && price <= 50000;
+    }
+
     return true;
+  };
+
+  /* =========================
+     PROPERTY DATA
+  ========================= */
+
+  const properties = [
+
+    /* ================= HYDERABAD ================= */
+
+    {
+      name: "Cozy Studio Home",
+      location: "Kukatpally, Hyderabad",
+      price: 15000,
+      type: "1 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🔒 Security"],
+    },
+
+    {
+      name: "Cozy City Apartment",
+      location: "Kukatpally, Hyderabad",
+      price: 20000,
+      type: "1 BHK",
+      category: "Student",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🛒 Nearby Shops"],
+    },
+
+    {
+      name: "Modern City Home",
+      location: "Miyapur, Hyderabad",
+      price: 22000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "📶 Wi-Fi"],
+    },
+
+    {
+      name: "Budget Family Home",
+      location: "Miyapur, Hyderabad",
+      price: 25000,
+      type: "2 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "🏫 Nearby School"],
+    },
+
+    {
+      name: "Comfortable Family Home",
+      location: "Gachibowli, Hyderabad",
+      price: 28000,
+      type: "2 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    {
+      name: "Comfortable Budget Home",
+      location: "Gachibowli, Hyderabad",
+      price: 30000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "📶 Wi-Fi"],
+    },
+
+    {
+      name: "Elegant Family Home",
+      location: "Kondapur, Hyderabad",
+      price: 32000,
+      type: "2 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🏊 Pool"],
+    },
+
+    {
+      name: "Modern Family Home",
+      location: "Hyderabad",
+      price: 35000,
+      type: "2 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🔒 Security"],
+    },
+
+    {
+      name: "Premium City Home",
+      location: "Jubilee Hills, Hyderabad",
+      price: 38000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    {
+      name: "Peaceful City Apartment",
+      location: "Kondapur, Hyderabad",
+      price: 42000,
+      type: "3 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
+      features: ["🏊 Pool", "🔒 Security", "🌳 Garden"],
+    },
+
+    {
+      name: "Premium Family Home",
+      location: "Jubilee Hills, Hyderabad",
+      price: 45000,
+      type: "3 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    {
+      name: "Luxury Villa",
+      location: "Banjara Hills, Hyderabad",
+      price: 55000,
+      type: "3 BHK",
+      category: "Premium",
+      image:
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🌳 Garden"],
+    },
+
+    /* ================= CHENNAI ================= */
+
+    {
+      name: "Modern Chennai Home",
+      location: "Chennai",
+      price: 18000,
+      type: "2 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🔒 Security"],
+    },
+
+    {
+      name: "Chennai Comfort Apartment",
+      location: "Velachery, Chennai",
+      price: 22000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🛒 Nearby Shops"],
+    },
+
+    {
+      name: "Chennai Family Residence",
+      location: "Anna Nagar, Chennai",
+      price: 30000,
+      type: "3 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "🔒 Security"],
+    },
+
+    /* ================= BANGALORE ================= */
+
+    {
+      name: "Affordable Bangalore Home",
+      location: "Electronic City, Bangalore",
+      price: 10000,
+      type: "1 BHK",
+      category: "Student",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🛒 Nearby Shops"],
+    },
+
+    {
+      name: "Cozy Bangalore Home",
+      location: "Marathahalli, Bangalore",
+      price: 15000,
+      type: "1 BHK",
+      category: "Student",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🔒 Security"],
+    },
+
+    {
+      name: "Modern Bangalore Apartment",
+      location: "HSR Layout, Bangalore",
+      price: 18000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🏢 Near Offices"],
+    },
+
+    {
+      name: "Premium Bangalore Home",
+      location: "Bangalore",
+      price: 22000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🔒 Security"],
+    },
+
+    {
+      name: "Premium Bangalore Apartment",
+      location: "Whitefield, Bangalore",
+      price: 25000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "📶 Wi-Fi"],
+    },
+
+    {
+      name: "Luxury Bangalore Apartment",
+      location: "Indiranagar, Bangalore",
+      price: 28000,
+      type: "2 BHK",
+      category: "Premium",
+      image:
+        "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    {
+      name: "Premium Bangalore Home",
+      location: "Koramangala, Bangalore",
+      price: 30000,
+      type: "3 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "📶 Wi-Fi"],
+    },
+
+    {
+      name: "Elegant Bangalore Apartment",
+      location: "Hebbal, Bangalore",
+      price: 35000,
+      type: "3 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "🔒 Security"],
+    },
+
+    {
+      name: "Luxury Bangalore Home",
+      location: "Jayanagar, Bangalore",
+      price: 40000,
+      type: "3 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    {
+      name: "Premium Bangalore Villa",
+      location: "Sadashivanagar, Bangalore",
+      price: 45000,
+      type: "3 BHK",
+      category: "Premium",
+      image:
+        "https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🌳 Garden"],
+    },
+
+    {
+      name: "Luxury Bangalore Residence",
+      location: "Rajajinagar, Bangalore",
+      price: 50000,
+      type: "4 BHK",
+      category: "Premium",
+      image:
+        "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    /* ================= MUMBAI ================= */
+
+    {
+      name: "Premium Mumbai Home",
+      location: "Mumbai",
+      price: 25000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🏊 Pool", "🔒 Security"],
+    },
+
+    {
+      name: "Mumbai City Apartment",
+      location: "Andheri, Mumbai",
+      price: 30000,
+      type: "2 BHK",
+      category: "Professional",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "📶 Wi-Fi", "🏢 Near Offices"],
+    },
+
+    {
+      name: "Mumbai Family Home",
+      location: "Powai, Mumbai",
+      price: 40000,
+      type: "3 BHK",
+      category: "Family",
+      image:
+        "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=900&q=80",
+      features: ["🚗 Parking", "🌳 Garden", "🔒 Security"],
+    },
+  ];
+
+  /* =========================
+     FILTER
+  ========================= */
+
+  const filteredProperties = properties.filter((property) => {
+    const budgetMatch = isInBudget(property.price);
+
+    const lifestyleMatch =
+      !lifestyle ||
+      property.category === lifestyle ||
+      (lifestyle === "Professional" &&
+        property.category === "Premium");
+
+    return budgetMatch && lifestyleMatch;
+  });
+
+  /* =========================
+     PROPERTY DETAILS ROUTE
+  ========================= */
+
+  if (location.pathname === "/property-details") {
+    return <PropertyDetails />;
   }
 
-  if (selectedBudget === "₹10K - ₹20K") {
-    return rent >= 10000 && rent <= 20000;
+  /* =========================
+     PROPERTIES ROUTE
+  ========================= */
+
+  if (location.pathname === "/properties") {
+    return <Properties />;
   }
 
-  if (selectedBudget === "₹20K - ₹30K") {
-    return rent >= 20000 && rent <= 30000;
-  }
+  /* =========================
+     HOME PAGE
+  ========================= */
 
-  if (selectedBudget === "₹30K - ₹50K") {
-    return rent >= 30000 && rent <= 50000;
-  }
-
-  if (selectedBudget === "₹50K+") {
-    return rent >= 50000;
-  }
-
-  return false;
-}; 
-const isMatchingHome = (rent, location, propertyType) => {
-  const budgetMatch = isInBudget(rent);
-
-  const locationMatch =
-    selectedLocation === "" || selectedLocation === location;
-
-  const propertyMatch =
-    selectedProperty === "" || selectedProperty === propertyType;
-
-  return budgetMatch && locationMatch && propertyMatch;
-};
   return (
-    <div>
+    <div className="app">
 
-      {/* NAVBAR */}
-      <header className="navbar">
-        <div>
-          <h2>🏠 RentEase</h2>
-          <small>Find a place to belong</small>
+      {/* ================= NAVBAR ================= */}
+
+      <nav className="navbar">
+
+        <div className="logo">
+          🏠 RentEase
         </div>
 
-        <nav>
+        <div className="nav-links">
           <a href="#home">Home</a>
           <a href="#properties">Properties</a>
+          <a href="#matching-homes">Smart Match</a>
           <a href="#locations">Locations</a>
           <a href="#about">About</a>
-        </nav>
+        </div>
 
-        <button className="list-btn">+ List Property</button>
-      </header>
+      </nav>
 
+      {/* ================= HERO ================= */}
 
-      {/* HERO */}
-      <section className="hero" id="home">
+      <section id="home" className="hero">
 
         <div className="hero-content">
 
-          <p className="small-title">
+          <p className="hero-label">
             FIND YOUR PERFECT HOME
           </p>
 
           <h1>
-            <span className="highlight">Find your place</span>
+            Find a place
             <br />
-            Feel at home.
+            <span>to belong.</span>
           </h1>
 
-          <p className="description">
-            Explore verified rental homes, apartments, villas and
-            studios in the best locations. Find a home that matches
-            your lifestyle and budget.
+          <p>
+            Discover comfortable homes that match your
+            lifestyle, location and budget.
           </p>
 
-          <div className="search-box">
+          <a
+            href="#matching-homes"
+            className="hero-btn"
+          >
+            Explore Homes →
+          </a>
 
-            <div className="search-field">
-              <label>LOCATION</label>
-              <select
-  value={selectedLocation}
-  onChange={(e) => setSelectedLocation(e.target.value)}
->
-  <option value="">Choose Location</option>
-  <option value="Hyderabad">Hyderabad</option>
-  <option value="Bangalore">Bangalore</option>
-  <option value="Chennai">Chennai</option>
-  <option value="Mumbai">Mumbai</option>
-</select>
-            </div>
-
-            <div className="search-field">
-              <label>PROPERTY</label>
-              <select>
-                <option>Property Type</option>
-                <option>Apartment</option>
-                <option>Villa</option>
-                <option>PG</option>
-                <option>Studio</option>
-                <option>studios</option>
-                </select>
-
-
-          </div>
-          <div className="search-field">
-  <label>BUDGET</label>
-
-  <select
-    value={selectedBudget}
-    onChange={(e) => setSelectedBudget(e.target.value)}
-  >
-    <option value="Any Budget">Any Budget</option>
-    <option value="₹10K - ₹20K">₹10K - ₹20K</option>
-    <option value="₹20K - ₹30K">₹20K - ₹30K</option>
-    <option value="₹30K - ₹50K">₹30K - ₹50K</option>
-    <option value="₹50K+">₹50K+</option>
-  </select>
+        </div>
+        {/* FAMILY PICTURE */}
+<div className="hero-family-image">
+ <img
+  className="family-hero-image"
+ src="https://carleyaplin.com/wp-content/uploads/2023/03/Relaxed-At-Home-Family-Photoshoot-Carley-Aplin-20230323_0261-1280x854.jpg"
+  alt="Family of Four"
+/>
 </div>
-<button
-  className="search-btn"
-  onClick={() => {
-    setShowMatch(true);
 
-    setTimeout(() => {
-      document.getElementById("matching-homes")?.scrollIntoView({
-        behavior: "smooth"
-      });
-    }, 100);
-  }}
->
-  ✨ Find My Perfect Home
-</button>
+      </section>
+
+      {/* ================= LIFESTYLE ================= */}
+
+      <section
+        id="lifestyle"
+        className="lifestyle-section"
+      >
+
+        <div className="section-heading">
+
+          <p>CHOOSE YOUR LIFESTYLE</p>
+
+          <h2>
+            Homes made for your life
+          </h2>
+
+          <span>
+            Find a home that matches the way you live.
+          </span>
 
         </div>
 
+        <div className="lifestyle-grid">
 
-  <div className="hero-image">
+          {/* PROFESSIONAL */}
+
+          <div className="lifestyle-card">
+
   <img
-    src="https://aapkapainter.com/assets/newdesign/images/homepage/deep-thankyou-image.webp"
-    alt="A place where families belong"
+    className="lifestyle-card-image"
+    src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=900&q=80"
+    alt="Working Professional"
   />
-</div>
 
-</div>
+  <div className="lifestyle-icon">
+    💼
+  </div>
+            <h3>
+              Working Professionals
+            </h3>
 
+            <p>
+              Comfortable homes near offices and everyday
+              essentials.
+            </p>
+
+            <button
+              onClick={() => {
+                setLifestyle("Professional");
+
+                document
+                  .getElementById("matching-homes")
+                  ?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+              }}
+            >
+              Explore Professionals →
+            </button>
+
+          </div>
+
+          {/* FAMILY WITH REAL PICTURE */}
+
+          <div className="lifestyle-card family-card">
+
+            <img
+              className="family-image"
+              src="https://images.unsplash.com/photo-1609220136736-443140cffec6?auto=format&fit=crop&w=800&q=80"
+              alt="Happy Family"
+            />
+
+            <div className="lifestyle-icon">
+              👨‍👩‍👧
+            </div>
+
+            <h3>
+              Family Homes
+            </h3>
+
+            <p>
+              Spacious and peaceful homes designed for
+              families.
+            </p>
+
+            <button
+              onClick={() => {
+                setLifestyle("Family");
+
+                document
+                  .getElementById("matching-homes")
+                  ?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+              }}
+            >
+              Explore Family Homes →
+            </button>
+
+          </div>
+
+          {/* PREMIUM */}
+
+          <div className="lifestyle-card">
+            <img
+  className="lifestyle-card-image"
+  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+  alt="Premium Luxury Home"
+/>
+
+            <div className="lifestyle-icon">
+              ✨
+            </div>
+
+            <h3>
+              Premium Living
+            </h3>
+
+            <p>
+              Elegant villas and premium homes for a
+              comfortable lifestyle.
+            </p>
+
+            <button
+              onClick={() => {
+                setLifestyle("Premium");
+
+                document
+                  .getElementById("matching-homes")
+                  ?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+              }}
+            >
+              Explore Premium →
+            </button>
+
+          </div>
+
+        </div>
 
       </section>
 
+      {/* ================= SMART MATCH ================= */}
 
-      {/* QUICK STATS */}
-      <section className="stats">
+      <section className="smart-match">
 
-        <div>
-          <h2>5,000+</h2>
-          <p>Verified Properties</p>
-        </div>
+        <div className="smart-match-content">
 
-        <div>
-          <h2>25+</h2>
-          <p>Popular Cities</p>
-        </div>
+          <div className="smart-match-text">
 
-        <div>
-          <h2>10K+</h2>
-          <p>Happy Renters</p>
-        </div>
+            <p className="smart-label">
+              SMART HOME MATCHING
+            </p>
 
-        <div>
-          <h2>4.8 ⭐</h2>
-          <p>Average Rating</p>
+            <h2>
+              Find a home that fits your{" "}
+              <span>life.</span>
+            </h2>
+
+            <p>
+              Tell us what matters to you and RentEase
+              will help you discover homes that match
+              your lifestyle and budget.
+            </p>
+
+          </div>
+
+          <div className="match-box">
+
+            <h3>
+              What are you looking for?
+            </h3>
+
+            <div className="match-options">
+
+              <button
+                className={
+                  lifestyle === "Family"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setLifestyle("Family")
+                }
+              >
+                👨‍👩‍👧 Family
+              </button>
+
+              <button
+                className={
+                  lifestyle === "Student"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setLifestyle("Student")
+                }
+              >
+                🎓 Student
+              </button>
+
+              <button
+                className={
+                  lifestyle === "Professional"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setLifestyle("Professional")
+                }
+              >
+                💼 Professional
+              </button>
+
+            </div>
+
+            <h3>
+              What's your monthly budget?
+            </h3>
+
+            <div className="match-options">
+
+              <button
+                className={
+                  budget === "₹10K - ₹20K"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setBudget("₹10K - ₹20K")
+                }
+              >
+                ₹10K - ₹20K
+              </button>
+
+              <button
+                className={
+                  budget === "₹20K - ₹30K"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setBudget("₹20K - ₹30K")
+                }
+              >
+                ₹20K - ₹30K
+              </button>
+
+              <button
+                className={
+                  budget === "₹30K - ₹50K"
+                    ? "active"
+                    : ""
+                }
+                onClick={() =>
+                  setBudget("₹30K - ₹50K")
+                }
+              >
+                ₹30K - ₹50K
+              </button>
+
+            </div>
+
+            <button
+              className="match-btn"
+              onClick={() => {
+                setShowMatch(true);
+
+                setTimeout(() => {
+                  document
+                    .getElementById("matching-homes")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                    });
+                }, 100);
+              }}
+            >
+              ✨ Find My Perfect Home
+            </button>
+
+            {showMatch && (
+              <div className="match-result">
+
+                <h3>
+                  ✨ Your RentEase Match
+                </h3>
+
+                <p>
+                  <strong>
+                    Lifestyle:
+                  </strong>{" "}
+                  {lifestyle || "Not selected"}
+                </p>
+
+                <p>
+                  <strong>
+                    Budget:
+                  </strong>{" "}
+                  {budget || "Not selected"}
+                </p>
+
+                <p>
+                  🏠 We found{" "}
+                  {filteredProperties.length}{" "}
+                  homes matching your preferences.
+                </p>
+
+                <button
+                  className="view-home-btn"
+                  onClick={() =>
+                    document
+                      .getElementById("matching-homes")
+                      ?.scrollIntoView({
+                        behavior: "smooth",
+                      })
+                  }
+                >
+                  View Matching Homes →
+                </button>
+
+              </div>
+            )}
+
+          </div>
+
         </div>
 
       </section>
 
+      {/* ================= MATCHING HOMES ================= */}
 
-      {/* PROPERTY TYPES */}
-      <section className="locations">
+      <section
+        id="matching-homes"
+        className="matching-homes"
+      >
 
         <div className="section-heading">
-          <p>EXPLORE BY TYPE</p>
-          <h2>Find What Fits Your Lifestyle</h2>
-        </div>
 
-        <div className="location-grid">
-
-          <div className="location-card">
-            <div>
-              <h3>🏢 Apartments</h3>
-              <p>Modern apartments for comfortable city living.</p>
-            </div>
-          </div>
-
-          <div className="location-card">
-            <div>
-              <h3>🏡 Villas</h3>
-              <p>Spacious villas for families and premium living.</p>
-            </div>
-          </div>
-
-          <div className="location-card">
-            <div>
-              <h3>🛏️ Studios</h3>
-              <p>Smart and affordable spaces for individuals.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* LOCATIONS */}
-      <section className="properties" id="locations">
-
-        <div className="section-heading">
-          <p>EXPLORE CITIES</p>
-          <h2>Popular Locations</h2>
-        </div>
-
-        <div className="property-grid">
-
-          <div className="property-card">
-            <img
-              src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=700&q=80"
-              alt="Hyderabad"
-            />
-            <div className="property-info">
-              <h3>Hyderabad</h3>
-              <p>1,240+ rental properties</p>
-            </div>
-          </div>
-
-          <div className="property-card">
-            <img
-              src="https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=700&q=80"
-              alt="Bangalore"
-            />
-            <div className="property-info">
-              <h3>Bangalore</h3>
-              <p>980+ rental properties</p>
-            </div>
-          </div>
-
-          <div className="property-card">
-            <img
-              src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=700&q=80"
-              alt="Chennai"
-            />
-            <div className="property-info">
-              <h3>Chennai</h3>
-              <p>760+ rental properties</p>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* FEATURED PROPERTIES */}
-      <section className="locations" id="properties">
-
-        <div className="section-heading">
-          <p>HANDPICKED FOR YOU</p>
-          <h2>Featured Homes</h2>
-        </div>
-
-        <div className="property-grid">
-
-          <div className="property-card">
-
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80"
-              alt="Luxury Villa"
-            />
-
-            <div className="property-info">
-              <h3>Modern Luxury Villa</h3>
-              <p>📍 Jubilee Hills, Hyderabad</p>
-              <p>🛏️ 3 BHK &nbsp; • &nbsp; 🚿 3 Bath</p>
-              <h3>₹45,000 / month</h3>
-            </div>
-
-          </div>
-
-
-          <div className="property-card">
-
-            <img
-              src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=700&q=80"
-              alt="Apartment"
-            />
-
-            <div className="property-info">
-              <h3>Elegant City Apartment</h3>
-              <p>📍 Whitefield, Bangalore</p>
-              <p>🛏️ 2 BHK &nbsp; • &nbsp; 🚿 2 Bath</p>
-              <h3>₹28,000 / month</h3>
-            </div>
-
-          </div>
-
-
-          <div className="property-card">
-
-            <img
-              src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=700&q=80"
-              alt="Family Home"
-            />
-
-            <div className="property-info">
-              <h3>Premium Family Home</h3>
-              <p>📍 Anna Nagar, Chennai</p>
-              <p>🛏️ 3 BHK &nbsp; • &nbsp; 🚿 2 Bath</p>
-              <h3>₹32,000 / month</h3>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-
-      {/* WHY RENTEASE */}
-      <section className="about" id="about">
-
-        <div className="about-image">
-
-          <img
-            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80"
-            alt="Beautiful interior"
-          />
-
-        </div>
-
-        <div className="about-content">
-
-          <p className="small-title">
-            WHY CHOOSE RENTEASE?
+          <p>
+            RECOMMENDED FOR YOU
           </p>
 
           <h2>
-            Renting a home should be simple.
+            Your Matching Homes
           </h2>
 
-          <p>
-            We connect renters with verified properties and
-            trusted owners, making the rental journey easier,
-            faster and more transparent.
-          </p>
-
-          <br />
-
-          <p>✓ Verified properties</p>
-          <p>✓ Transparent pricing</p>
-          <p>✓ Trusted property owners</p>
-          <p>✓ Easy property discovery</p>
+          <span>
+            Homes based on your lifestyle and budget
+          </span>
 
         </div>
-        </section>
 
-{/* LIFESTYLE SECTION */}
-<section className="lifestyle-section">
-  <div className="section-heading">
-    <p>FIND YOUR PERFECT MATCH</p>
-    <h2>Choose a lifestyle that feels like you</h2>
-    <span>
-      Discover homes designed around your lifestyle, needs and budget.
-    </span>
-  </div>
+        <div className="matching-grid">
 
-  <div className="lifestyle-grid">
+          {filteredProperties.map(
+            (property, index) => (
 
-    <div className="lifestyle-card">
-      <div className="lifestyle-icon">🎓</div>
-      <h3>Student Living</h3>
-      <p>Affordable rooms and studios close to colleges and universities.</p>
-      <button>Explore Students →</button>
-    </div>
+              <div
+                className="matching-card"
+                key={
+                  property.name +
+                  property.location +
+                  index
+                }
+              >
 
-    <div className="lifestyle-card">
-      <div className="lifestyle-icon">💼</div>
-      <h3>Working Professionals</h3>
-      <p>Comfortable homes near offices and everyday essentials.</p>
-      <button>Explore Professionals →</button>
-    </div>
+                <img
+                  src={property.image}
+                  alt={property.name}
+                />
 
-    <div className="lifestyle-card">
-      <div className="lifestyle-icon">👨‍👩‍👧</div>
-      <h3>Family Homes</h3>
-      <p>Spacious and peaceful homes designed for families.</p>
-      <button>Explore Family Homes →</button>
-    </div>
+                <div className="matching-info">
 
-    <div className="lifestyle-card">
-      <div className="lifestyle-icon">✨</div>
-      <h3>Premium Living</h3>
-      <p>Elegant villas and premium homes for a comfortable lifestyle.</p>
-      <button>Explore Premium →</button>
-    </div>
+                  <h3>
+                    {property.name}
+                  </h3>
 
-  </div>
-</section>
-{/* SMART MATCH */}
-<section className="smart-match">
-  <div className="smart-match-content">
+                  <p>
+                    📍 {property.location}
+                  </p>
 
-    <div className="smart-match-text">
-      <p className="smart-label">SMART HOME MATCHING</p>
+                  <h4>
+                    ₹
+                    {property.price.toLocaleString(
+                      "en-IN"
+                    )}{" "}
+                    / month
+                  </h4>
 
-      <h2>
-        Find a home that fits your <span>life.</span>
-      </h2>
+                  <div className="home-details">
 
-      <p>
-        Tell us what matters to you and RentEase will help you
-        discover homes that match your lifestyle and budget.
-      </p>
-    </div>
+                    <span>
+                      🛏️ {property.type}
+                    </span>
 
-    <div className="match-box">
+                    {property.features.map(
+                      (feature, featureIndex) => (
+                        <span
+                          key={featureIndex}
+                        >
+                          {feature}
+                        </span>
+                      )
+                    )}
 
-      <h3>What are you looking for?</h3>
+                  </div>
 
-      <div className="match-options">
-        <button onClick={() => setLifestyle("Family")}>
-          👨‍👩‍👧 Family
-        </button>
+                  {/* VIEW DETAILS BUTTON */}
 
-        <button onClick={() => setLifestyle("Student")}>
-          🎓 Student
-        </button>
+                  <button
+                    onClick={() =>
+                      handleViewDetails({
+                        ...property,
+                        price:
+                          `₹${property.price.toLocaleString(
+                            "en-IN"
+                          )} / month`,
+                      })
+                    }
+                  >
+                    View Details →
+                  </button>
 
-        <button onClick={() => setLifestyle("Professional")}>
-          💼 Professional
-        </button>
-      </div>
+                </div>
 
-      <h3>What's your monthly budget?</h3>
+              </div>
 
-      <div className="match-options">
+            )
+          )}
 
-  <button
-    onClick={() => {
-      setBudget("₹10K - ₹20K");
-      setSelectedBudget("₹10K - ₹20K");
-    }}
-  >
-    ₹10K - ₹20K
-  </button>
+        </div>
 
-  <button
-    onClick={() => {
-      setBudget("₹20K - ₹30K");
-      setSelectedBudget("₹20K - ₹30K");
-    }}
-  >
-    ₹20K - ₹30K
-  </button>
+        {filteredProperties.length === 0 && (
 
-  <button
-    onClick={() => {
-      setBudget("₹30K - ₹50K");
-      setSelectedBudget("₹30K - ₹50K");
-    }}
-  >
-    ₹30K - ₹50K
-  </button>
+          <div className="no-results">
 
-</div>
+            <h3>
+              😔 No matching homes found
+            </h3>
 
-      <button
-        className="match-btn"
-        onClick={() => setShowMatch(true)}
+            <p>
+              Try changing your lifestyle or budget.
+            </p>
+
+          </div>
+
+        )}
+
+      </section>
+
+      {/* ================= TESTIMONIAL ================= */}
+
+      <section
+        id="testimonials"
+        className="testimonials"
       >
-        ✨ Find My Perfect Home
-      </button>
-
-      {showMatch && (
-        <div className="match-result">
-          <h3>✨ Your RentEase Match</h3>
-
-          <p>
-            <strong>Lifestyle:</strong>{" "}
-            {lifestyle || "Not selected"}
-          </p>
-
-          <p>
-            <strong>Budget:</strong>{" "}
-            {budget || "Not selected"}
-          </p>
-
-          <p>🏠 Great! We found homes matching your preferences.</p>
-
-          
-
-<button
-  className="view-home-btn"
-  onClick={() =>
-    document.getElementById("matching-homes")?.scrollIntoView({
-      behavior: "smooth"
-    })
-  }
->
-  View Matching Homes →
-</button>
-</div>
-)}
-
-    </div>
-  </div>
-</section>
-
-{/* MATCHING HOMES */}
-<section id="matching-homes" className="matching-homes">
-  <div className="section-heading">
-    <p>RECOMMENDED FOR YOU</p>
-    <h2>Your Matching Homes</h2>
-    <span>Homes selected based on your lifestyle and budget</span>
-  </div>
-
-  <div className="matching-grid">
-
-    {isMatchingHome(15000, "Hyderabad", "Studio") && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=800&q=80"
-          alt="Cozy Studio Home"
-        />
-        <div className="matching-info">
-          <h3>🏠 Cozy Studio Home</h3>
-          <p>📍 Kukatpally</p>
-          <h4>₹15,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 1 BHK</span>
-            <span>🚗 Parking</span>
-            <span>📶 Wi-Fi</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-   {isMatchingHome(35000, "Hyderabad", "Apartment") && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-      alt="Cozy City Apartment"
-    />
-    <div className="matching-info">
-      <h3>🏠 Cozy City Apartment</h3>
-      <p>📍 Kukatpally</p>
-      <h4>₹20,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 1 BHK</span>
-        <span>🚗 Parking</span>
-        <span>📶 Wi-Fi</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isInBudget(22000) && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
-      alt="Modern City Home"
-    />
-    <div className="matching-info">
-      <h3>✨ Modern City Home</h3>
-      <p>📍 Miyapur</p>
-      <h4>₹22,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>🌳 Garden</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isInBudget(28000) && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80"
-      alt="Comfortable Family Home"
-    />
-    <div className="matching-info">
-      <h3>🌿 Comfortable Family Home</h3>
-      <p>📍 Gachibowli</p>
-      <h4>₹28,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>🏊 Pool</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-    {isInBudget(25000) && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80"
-          alt="Budget Family Home"
-        />
-        <div className="matching-info">
-          <h3>🏡 Budget Family Home</h3>
-          <p>📍 Miyapur</p>
-          <h4>₹25,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 2 BHK</span>
-            <span>🚗 Parking</span>
-            <span>🌳 Garden</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-
-    {isInBudget(30000) && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
-          alt="Comfortable Budget Home"
-        />
-        <div className="matching-info">
-          <h3>💛 Comfortable Budget Home</h3>
-          <p>📍 Gachibowli</p>
-          <h4>₹30,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 2 BHK</span>
-            <span>🚗 Parking</span>
-            <span>🌳 Garden</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-    {isInBudget(32000) && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
-      alt="Elegant Family Home"
-    />
-    <div className="matching-info">
-      <h3>🏡 Elegant Family Home</h3>
-      <p>📍 Kondapur</p>
-      <h4>₹32,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>📶 Wi-Fi</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isMatchingHome(35000, "Hyderabad", "Apartment") && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80"
-      alt="Modern Family Home"
-    />
-    <div className="matching-info">
-      <h3>✨ Modern Family Home</h3>
-      <p>📍 Hyderabad</p>
-      <h4>₹35,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>📶 Wi-Fi</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isInBudget(38000) && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
-      alt="Premium City Home"
-    />
-    <div className="matching-info">
-      <h3>🌟 Premium City Home</h3>
-      <p>📍 Jubilee Hills</p>
-      <h4>₹38,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>🏊 Pool</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isInBudget(42000) && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
-      alt="Peaceful City Apartment"
-    />
-    <div className="matching-info">
-      <h3>🌿 Peaceful City Apartment</h3>
-      <p>📍 Kondapur</p>
-      <h4>₹42,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 3 BHK</span>
-        <span>🏊 Pool</span>
-        <span>🔒 Security</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isInBudget(45000) && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=800&q=80"
-      alt="Premium Family Home"
-    />
-    <div className="matching-info">
-      <h3>✨ Premium Family Home</h3>
-      <p>📍 Jubilee Hills</p>
-      <h4>₹45,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 3 BHK</span>
-        <span>🚗 Parking</span>
-        <span>🏊 Pool</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{isMatchingHome(40000, "Hyderabad", "Villa") && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-      alt="Luxury City Villa"
-    />
-    <div className="matching-info">
-      <h3>🏠 Luxury City Villa</h3>
-      <p>📍 Banjara Hills</p>
-      <h4>₹48,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 3 BHK</span>
-        <span>🚗 Parking</span>
-        <span>🏊 Pool</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-    {isInBudget(35000) && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-          alt="Modern Family Home"
-        />
-        <div className="matching-info">
-          <h3>✨ Modern Family Home</h3>
-          <p>📍 Hyderabad</p>
-          <h4>₹35,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 2 BHK</span>
-            <span>🚗 Parking</span>
-            <span>📶 Wi-Fi</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-
-  {isMatchingHome(40000, "Hyderabad", "Apartment") && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
-          alt="Peaceful City Apartment"
-        />
-        <div className="matching-info">
-          <h3>🌿 Peaceful City Apartment</h3>
-          <p>📍 Kondapur</p>
-          <h4>₹40,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 2 BHK</span>
-            <span>🏊 Pool</span>
-            <span>🔒 Security</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-
-    {isMatchingHome(45000, "Hyderabad", "Villa") && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=800&q=80"
-          alt="Premium Family Home"
-        />
-        <div className="matching-info">
-          <h3>✨ Premium Family Home</h3>
-          <p>📍 Jubilee Hills</p>
-          <h4>₹45,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 3 BHK</span>
-            <span>🚗 Parking</span>
-            <span>🏊 Pool</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-
-    {isInBudget(55000) && (
-      <div className="matching-card">
-        <img
-          src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
-          alt="Luxury Villa"
-        />
-        <div className="matching-info">
-          <h3>🏡 Luxury Villa</h3>
-          <p>📍 Banjara Hills</p>
-          <h4>₹55,000 / month</h4>
-
-          <div className="home-details">
-            <span>🛏️ 3 BHK</span>
-            <span>🚗 Parking</span>
-            <span>🏊 Pool</span>
-          </div>
-
-          <button>View Details →</button>
-        </div>
-      </div>
-    )}
-    {/* CHENNAI */}
-{isMatchingHome(18000, "Chennai", "Apartment") && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600607687920-4ea09cf159d?auto=format&fit=crop&w=800&q=80"
-      alt="Chennai Apartment"
-    />
-    <div className="matching-info">
-      <h3>🏠 Modern Chennai Home</h3>
-      <p>📍 Chennai</p>
-      <h4>₹18,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>📶 Wi-Fi</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{/* BANGALORE */}
-{isMatchingHome(22000, "Bangalore", "Apartment") && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-      alt="Bangalore Apartment"
-    />
-    <div className="matching-info">
-      <h3>🌆 Premium Bangalore Home</h3>
-      <p>📍 Bangalore</p>
-      <h4>₹22,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>📶 Wi-Fi</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-{/* MUMBAI */}
-{isMatchingHome(25000, "Mumbai", "Apartment") && (
-  <div className="matching-card">
-    <img
-      src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=800&q=80"
-      alt="Mumbai Apartment"
-    />
-    <div className="matching-info">
-      <h3>🏙️ Premium Mumbai Home</h3>
-      <p>📍 Mumbai</p>
-      <h4>₹25,000 / month</h4>
-
-      <div className="home-details">
-        <span>🛏️ 2 BHK</span>
-        <span>🚗 Parking</span>
-        <span>🏊 Pool</span>
-      </div>
-
-      <button>View Details →</button>
-    </div>
-  </div>
-)}
-
-  </div>
-</section>
-
-      {/* TESTIMONIAL */}
-      <section className="locations">
 
         <div className="section-heading">
-          <p>RENTERS LOVE US</p>
-          <h2>What Our Users Say</h2>
+
+          <p>
+            RENTERS LOVE US
+          </p>
+
+          <h2>
+            What Our Users Say
+          </h2>
+
         </div>
 
         <div className="property-card">
 
           <div className="property-info">
 
-            <h3>⭐⭐⭐⭐⭐</h3>
+            <h3>
+              ⭐⭐⭐⭐⭐
+            </h3>
 
             <p>
-              "RentEase made finding my apartment extremely easy.
-              I could compare properties and find a place within
-              my budget without wasting time."
+              "RentEase made finding my apartment
+              extremely easy. I could compare properties
+              and find a place within my budget without
+              wasting time."
             </p>
 
             <br />
 
-            <strong>— Priya, Hyderabad</strong>
+            <strong>
+              — Priya, Hyderabad
+            </strong>
 
           </div>
 
@@ -984,11 +974,39 @@ const isMatchingHome = (rent, location, propertyType) => {
 
       </section>
 
+      {/* ================= ABOUT ================= */}
 
-      {/* FOOTER */}
+      <section
+        id="about"
+        className="about-section"
+      >
+
+        <div className="section-heading">
+
+          <p>
+            ABOUT RENTEASE
+          </p>
+
+          <h2>
+            Making home hunting easier.
+          </h2>
+
+          <span>
+            RentEase connects people with comfortable
+            homes that fit their lifestyle and budget.
+          </span>
+
+        </div>
+
+      </section>
+
+      {/* ================= FOOTER ================= */}
+
       <footer>
 
-        <h2>🏠 RentEase</h2>
+        <h2>
+          🏠 RentEase
+        </h2>
 
         <p>
           Find a place to belong.
@@ -996,10 +1014,25 @@ const isMatchingHome = (rent, location, propertyType) => {
 
         <br />
 
-        <a href="#home">Home</a>
-        <a href="#properties">Properties</a>
-        <a href="#locations">Locations</a>
-        <a href="#about">About</a>
+        <a href="#home">
+          Home
+        </a>
+
+        <a href="#properties">
+          Properties
+        </a>
+
+        <a href="#matching-homes">
+          Smart Match
+        </a>
+
+        <a href="#locations">
+          Locations
+        </a>
+
+        <a href="#about">
+          About
+        </a>
 
         <p>
           © 2026 RentEase. All rights reserved.
@@ -1008,10 +1041,7 @@ const isMatchingHome = (rent, location, propertyType) => {
       </footer>
 
     </div>
-    
-  
   );
 }
-
 
 export default App;
